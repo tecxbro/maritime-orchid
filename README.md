@@ -26,6 +26,10 @@ Applications continue to use that existing deployed Google backend. Deploying th
 
 The preserved backend targets spreadsheet `10eAEVJrPAW3ZJgToFBFksUktO0aIaz8Pbygh0t2SWxQ`, tab `Applications`. It validates input, checks submission IDs, rate-limits submissions, and writes formula-safe cells. Its service-owner permissions and Google deployment settings remain managed in Google, outside this Git repository. This export contains no applicant records or Google credentials and does not change access permissions.
 
+## Mobile layout and playback
+
+Phone and touchscreen playback now displays the selected native video directly, avoiding the canvas copy for each frame. Portrait text is anchored in the upper sky, including short phone viewports. Mobile decorative blur and looping animations are disabled. Video files and quality are unchanged.
+
 ## Playback buffering
 
 After showing the first frame, the player downloads the next two chunks and prepares one upcoming decoder. It keeps at most four chunks and two mounted video elements, follows scroll direction, cancels stale work on jumps, and disables speculation in data-saving mode. The video assets are unchanged. The classic player embeds the shared buffer so it works in X's opaque iframe without module imports or media fetches.
@@ -36,7 +40,7 @@ After editing `dist/shared/chunk-buffer.mjs`, run `node scripts/sync-chunk-buffe
 
 Run `node --test verification/*.test.mjs` with Node.js. Tests cover emitted poster/profile selection, player metadata, modeled chunk loading and reverse navigation, compact application form, and hashes for preserved media/runtime files. Modeled tests are not a physical Safari or X app acceptance test. No real application is submitted by these checks.
 
-Source: published Premium version 10, commit `180959019a4141ce7f61b348c0f92c44c2de4ac6`. The player entry and every retained runtime/media file are copied byte-for-byte; `dist/index.html` is an additional copy of `dist/player.html`. `EXPORT-MANIFEST.json` inventories all exported files and checksums.
+Source: published Premium version 11, commit `5234a5f357c85471a03dbe84a6bb09c262bdb821`. The player entry and every retained runtime/media file are copied byte-for-byte; `dist/index.html` is an additional copy of `dist/player.html`. `EXPORT-MANIFEST.json` inventories all exported files and checksums.
 
 No `.gitignore` is present and no included player file is excluded by ignore rules. All player media are stored directly in Git; Git LFS and multipart reconstruction are not required. Historical full-site archives, the separate main page, diagnostic-only card page, and unrelated production intermediates are outside this player-only export.
 

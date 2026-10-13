@@ -529,17 +529,19 @@ function readingBeatOpacity(frame,beat){
   const exit=beat.holdAtEnd?1:clamp((beat.captionEndFrame-frame)/Math.max(1,beat.captionEndFrame-beat.readEndFrame));
   return Math.min(enter,exit);
 }
-const track=document.querySelector('#track'),mediaLayer=document.querySelector('#media'),canvas=document.querySelector('#film'),context=canvas.getContext('2d',{alpha:false}),poster=document.querySelector('#poster');
+const track=document.querySelector('#track'),mediaLayer=document.querySelector('#media'),canvas=document.querySelector('#film'),poster=document.querySelector('#poster');
+let context=null,presentedVideo=null,lastTextFrame=-1,lastTextReduced=null;
 const articles=[...document.querySelectorAll('.scene')],buttons=[...document.querySelectorAll('nav [data-go]')],status=document.querySelector('#media-status');
 const viewportProbe=document.createElement('div');viewportProbe.setAttribute('aria-hidden','true');viewportProbe.style.cssText='position:fixed;top:0;left:0;width:1px;height:100svh;visibility:hidden;pointer-events:none';document.body.append(viewportProbe);
-const reduced=matchMedia('(prefers-reduced-motion:reduce)'),mobile=matchMedia('(max-width:700px)'),configURL=new URL(document.querySelector('script[data-config]').dataset.config,location.href);
+const reduced=matchMedia('(prefers-reduced-motion:reduce)'),mobile=matchMedia('(max-width:700px)'),coarse=matchMedia('(pointer:coarse)'),configURL=new URL(document.querySelector('script[data-config]').dataset.config,location.href);
+const copies=articles.map(article=>article.querySelector('.copy'));
 const retry=document.createElement('button');retry.id='media-retry';retry.type='button';retry.hidden=true;status.after(retry);status.setAttribute('role','status');status.setAttribute('aria-live','polite');
 let readingBeats=null,activeBeat=0;
 let config,manifest,map,chunks,cache,buffer,decoder,pendingDecoder,currentIndex=-1,pendingIndex=-1,pendingController,loadSerial=0;
 let raf=0,viewportHeight=0,visibleHeight=innerHeight,wasReduced=reduced.matches,progress=0,active=0,requestedFrame=0,displayedFrame=0,videoBusy=false,mode='loading',firstFrameMs=null,totalBytes=0,firstFrameBytes=0,loadCount=0,seekCount=0,decodedFrames=0,lastRequested=0,direction=1,hasScrolled=false;
 let failedIndex=-1,blockedDecoder=null,recoveryAttempts=0,presentationMethod=null,suspended=document.hidden;
 const attempts=new Map(),errors=[],latencies=[],transfers=[];let quality='desktop';
-const diagnostics=()=>({mode,quality,requestedFrame,displayedFrame,readingBeat:readingBeats?.[activeBeat]?.id??null,decodedMediaTime:displayedFrame/(manifest?.media.fps||24),totalFrames:manifest?.media.frameCount||0,sourceFps:manifest?.media.fps||null,activeChunk:currentIndex,pendingChunk:pendingIndex,chunkCount:chunks?.length||0,cacheEntries:cache?.entries.size||0,warmChunk:buffer?.spare?.index??-1,warmReady:buffer?.spare?.ready??false,bufferStats:buffer?{...buffer.stats}:null,cacheBytes:cache?.bytes||0,totalReadBytes:totalBytes,networkTransferBytes:performance.getEntriesByType('resource').filter(e=>/embed-media\/.*\.js/.test(e.name)).reduce((n,e)=>n+e.transferSize,0),firstContentfulPaintMs:performance.getEntriesByName('first-contentful-paint')[0]?.startTime??null,firstFrameBytes,firstFrameMs,loadCount,seekCount,decodedFrames,activeVideoCount:mediaLayer.querySelectorAll('video').length,seekLatenciesMs:latencies.slice(-64),transfers:transfers.slice(-8),errors:[...errors],presentationMethod,recoveryAttempts,videoBusy,suspended,resourceTimings:performance.getEntriesByType('resource').filter(e=>/embed-media\/.*\.js/.test(e.name)).slice(-8).map(e=>({url:e.name.split('/').at(-1),durationMs:Math.round(e.duration),transferSize:e.transferSize,encodedBodySize:e.encodedBodySize}))});
+const diagnostics=()=>({mode,quality,requestedFrame,displayedFrame,readingBeat:readingBeats?.[activeBeat]?.id??null,decodedMediaTime:displayedFrame/(manifest?.media.fps||24),totalFrames:manifest?.media.frameCount||0,sourceFps:manifest?.media.fps||null,activeChunk:currentIndex,pendingChunk:pendingIndex,chunkCount:chunks?.length||0,cacheEntries:cache?.entries.size||0,warmChunk:buffer?.spare?.index??-1,warmReady:buffer?.spare?.ready??false,bufferStats:buffer?{...buffer.stats}:null,cacheBytes:cache?.bytes||0,totalReadBytes:totalBytes,networkTransferBytes:performance.getEntriesByType('resource').filter(e=>/embed-media\/.*\.js/.test(e.name)).reduce((n,e)=>n+e.transferSize,0),firstContentfulPaintMs:performance.getEntriesByName('first-contentful-paint')[0]?.startTime??null,firstFrameBytes,firstFrameMs,loadCount,seekCount,decodedFrames,activeVideoCount:mediaLayer.querySelectorAll('video').length,seekLatenciesMs:latencies.slice(-64),transfers:transfers.slice(-8),errors:[...errors],presentationMethod,presentationSurface:mobile.matches||coarse.matches?'native-video':'canvas',recoveryAttempts,videoBusy,suspended,resourceTimings:performance.getEntriesByType('resource').filter(e=>/embed-media\/.*\.js/.test(e.name)).slice(-8).map(e=>({url:e.name.split('/').at(-1),durationMs:Math.round(e.duration),transferSize:e.transferSize,encodedBodySize:e.encodedBodySize}))});
 Object.defineProperty(window,'__journeyDiagnostics',{get:diagnostics});
 function announce(text){status.textContent=text;status.hidden=!text;}
 function schedule(){if(!raf&&!suspended&&!document.hidden)raf=requestAnimationFrame(render);}
@@ -556,9 +558,18 @@ function failure(error,index,recover){
 }
 function drawFrame(current,index,local,method){
   if(suspended||document.hidden)throw new DOMException('Aborted','AbortError');
-  if(canvas.width!==current.videoWidth||canvas.height!==current.videoHeight){canvas.width=current.videoWidth;canvas.height=current.videoHeight;}
-  context.drawImage(current,0,0,canvas.width,canvas.height);
-  canvas.hidden=false;poster.hidden=true;displayedFrame=chunks[index].startFrame+local;decodedFrames++;presentationMethod=method;
+  // Let the phone compositor present the decoded pixels directly. Spare videos
+  // stay mounted behind the selected video for Safari activation and look-ahead.
+  if(mobile.matches||coarse.matches){
+    if(presentedVideo!==current){presentedVideo?.removeAttribute('data-presented');current.setAttribute('data-presented','');presentedVideo=current;}
+    canvas.hidden=true;
+  }else{
+    context??=canvas.getContext('2d',{alpha:false});
+    if(canvas.width!==current.videoWidth||canvas.height!==current.videoHeight){canvas.width=current.videoWidth;canvas.height=current.videoHeight;}
+    context.drawImage(current,0,0,canvas.width,canvas.height);
+    presentedVideo?.removeAttribute('data-presented');presentedVideo=null;canvas.hidden=false;
+  }
+  poster.hidden=true;displayedFrame=chunks[index].startFrame+local;decodedFrames++;presentationMethod=method;
   if(firstFrameMs===null){firstFrameMs=performance.now();firstFrameBytes=totalBytes;}
   mode='video';renderText(displayedFrame);
 }
@@ -628,6 +639,8 @@ async function switchChunk(index){
   }finally{signal.removeEventListener('abort',cancelWarm);next?.dispose();if(serial===loadSerial)pendingDecoder=null;}
 }
 function renderText(frame){
+  if(frame===lastTextFrame&&reduced.matches===lastTextReduced)return;
+  lastTextFrame=frame;lastTextReduced=reduced.matches;
   active=sceneAtFrame(frame,manifest);mediaLayer.style.backgroundColor=config.sceneSkies?.[active]||config.sky||'#285571';
   activeBeat=readingBeats?readingBeatAtFrame(frame,readingBeats):active;
   const beat=readingBeats?.[activeBeat]?.id||String(active);if(mediaLayer.dataset.beat!==beat)mediaLayer.dataset.beat=beat;
@@ -636,7 +649,7 @@ function renderText(frame){
     const opacity=selected?(readingBeats?readingBeatOpacity(frame,readingBeats[i]):captionOpacity(frame,manifest.scenes[i],i)):0;
     article.classList.toggle('active',selected);article.inert=!selected||opacity===0;
     article.setAttribute('aria-hidden',String(!selected||opacity===0));
-    article.querySelector('.copy').style.opacity=opacity;buttons[i].toggleAttribute('aria-current',selected);if(selected)buttons[i].setAttribute('aria-current','step');
+    copies[i].style.opacity=opacity;buttons[i].toggleAttribute('aria-current',selected);if(selected)buttons[i].setAttribute('aria-current','step');
   });
   const final=document.querySelector('#final-sms'),lastScene=manifest.scenes.length-1,ready=config.finalApply!==false&&(active===lastScene&&frame>=manifest.scenes[lastScene].readStartFrame);final.hidden=!ready;final.inert=!ready;
 }

@@ -1,13 +1,13 @@
 {
   "scope": "Premium X player only",
-  "sourceCommit": "180959019a4141ce7f61b348c0f92c44c2de4ac6",
-  "fileCountExcludingManifest": 129,
-  "totalBytesExcludingManifest": 62938829,
+  "sourceCommit": "5234a5f357c85471a03dbe84a6bb09c262bdb821",
+  "fileCountExcludingManifest": 131,
+  "totalBytesExcludingManifest": 62948790,
   "files": [
     {
       "path": "README.md",
-      "bytes": 4225,
-      "sha256": "65e601098c09c0b0a99cf15e9d0ba45d2da31974c7c8d6c35cb836e3707ccda7"
+      "bytes": 4554,
+      "sha256": "f57a1f40935649bd55f9e3b0bf7a877f8db06f0b3681f3a268d22080a7d14da3"
     },
     {
       "path": "backend/Code.gs",
@@ -261,8 +261,8 @@
     },
     {
       "path": "dist/index.html",
-      "bytes": 61137,
-      "sha256": "02aa03eee61229d0ebdba7d8d0cac43889580abbbbee9cdfa60127a1e4bf47b5"
+      "bytes": 61223,
+      "sha256": "f4ce81da2e6e4ee4b61caf2ae20263d3228318cc85e7d29eb743dda3ea18dae1"
     },
     {
       "path": "dist/media/card-preview.png",
@@ -270,14 +270,14 @@
       "sha256": "ac882927752e2c133ad4f9ebe8d86ad0db620533ef02a64cd0a129927f94872d"
     },
     {
-      "path": "dist/player.html",
-      "bytes": 61137,
-      "sha256": "02aa03eee61229d0ebdba7d8d0cac43889580abbbbee9cdfa60127a1e4bf47b5"
+      "path": "dist/player/index.html",
+      "bytes": 61238,
+      "sha256": "e8446f39da7b6fe5eddb181482ad289b23d65fa95152d0d1c49cbc3f56780dc7"
     },
     {
-      "path": "dist/player/index.html",
-      "bytes": 61152,
-      "sha256": "6d7caa04677cf95a0e5882c00d3381810a00ae6580f62f6b496dad926ab1cfb7"
+      "path": "dist/player.html",
+      "bytes": 61223,
+      "sha256": "f4ce81da2e6e4ee4b61caf2ae20263d3228318cc85e7d29eb743dda3ea18dae1"
     },
     {
       "path": "dist/profiles/landscape/chunk-index.json",
@@ -566,8 +566,8 @@
     },
     {
       "path": "dist/shared/embed-runtime.js",
-      "bytes": 55476,
-      "sha256": "009ac47523380b7087b6615c0e818fc321549923ef2b628319b5e4b43c4352d4"
+      "bytes": 56310,
+      "sha256": "8fa1c71d070a4e6314c76163c31fcdbdf6502bb4ceb98818a3e9be6632cf9ed4"
     },
     {
       "path": "dist/shared/embed.css",
@@ -580,9 +580,14 @@
       "sha256": "d6d833d7f0226000777ee3ecf11d4403da1bc1b3e85253ba0f95794a135bd931"
     },
     {
+      "path": "dist/shared/mobile-presentation.css",
+      "bytes": 3255,
+      "sha256": "f6989a53fd1d319fe00d62f100d4f5d3e8456f1bf6fbabf812694ecd5726f62c"
+    },
+    {
       "path": "dist/shared/player.js",
-      "bytes": 26326,
-      "sha256": "0cdbd399d21ce61fffef7c586435c36c70b2e941ec89840cacc71d4a55c179cd"
+      "bytes": 27160,
+      "sha256": "cebfcb476b7fd5a5cb7307419ccb9b302ecf02dda5bcd796b8ffc1d8fbf7132a"
     },
     {
       "path": "dist/shared/premium-layout.css",
@@ -610,12 +615,12 @@
       "sha256": "aed400ae66081b49d5e018094ac9afe0adf828bfddbb0b0736508b2ea4f6bd8c"
     },
     {
-      "path": "dist/terms.html",
+      "path": "dist/terms/index.html",
       "bytes": 6592,
       "sha256": "95b1b6a0d3129503425c4937a38632f65b53172111f26425e0e105ba9774c937"
     },
     {
-      "path": "dist/terms/index.html",
+      "path": "dist/terms.html",
       "bytes": 6592,
       "sha256": "95b1b6a0d3129503425c4937a38632f65b53172111f26425e0e105ba9774c937"
     },
@@ -628,6 +633,11 @@
       "path": "verification/chunk-buffer.test.mjs",
       "bytes": 7793,
       "sha256": "000cda67a37711be7c162e298cc45d317106af6ff80e69f9647288696853714f"
+    },
+    {
+      "path": "verification/mobile-presentation.test.mjs",
+      "bytes": 4451,
+      "sha256": "2bde653ce36e444c113e90298bcbc238bab79643896ac1dc3ad02431b2c1f6f8"
     },
     {
       "path": "verification/poster-markup.test.mjs",
