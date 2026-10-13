@@ -373,6 +373,75 @@ if (typeof document !== 'undefined') bindProgramDetails(document);
 // First1000 progressive2 lifecycle repair. Media remains independent Blob chunks.
 
 
+/* BEGIN shared chunk buffer */
+// Bounded look-ahead shared by the native page and the classic X player.
+// One displayed decoder plus one prepared decoder; at most four cached chunks.
+class ChunkBuffer {
+  constructor({cache, createDecoder, isSuspended, saveData=false}) {
+    Object.assign(this,{cache,createDecoder,isSuspended,saveData});
+    this.spare=null;this.failedWarm=-1;this.windowKey='';this.failedPrefetch=new Set();
+    this.stats={prepared:0,reused:0,cancelled:0};
+  }
+  retain(index,direction=1) {
+    direction=direction<0?-1:1;
+    const key=`${index}/${direction}`;
+    if(key!==this.windowKey){this.windowKey=key;this.failedWarm=-1;this.failedPrefetch.clear();}
+    const ahead=index+direction;
+    if(this.spare&&this.spare.index!==ahead)this.cancelSpare();
+    this.cache.retain(this.saveData?[index,index-1,index+1]:[index,index-direction,ahead,index+2*direction]);
+  }
+  prefetch(index,direction=1) {
+    if(this.saveData||this.isSuspended())return;
+    direction=direction<0?-1:1;this.retain(index,direction);
+    const windowKey=this.windowKey;
+    for(const target of [index+direction,index+2*direction]){
+      if(this.cache.allowed.has(target)&&!this.failedPrefetch.has(target))this.cache.get(target).catch(()=>{
+        if(this.windowKey===windowKey)this.failedPrefetch.add(target);
+      });
+    }
+    const target=index+direction;
+    if(!this.cache.allowed.has(target)||this.spare?.index===target||this.failedWarm===target)return;
+    this.cancelSpare();
+    const controller=new AbortController();
+    const slot={index:target,controller,decoder:null,claimed:false,ready:false};
+    slot.cancel=()=>{controller.abort();slot.decoder?.dispose();};
+    this.spare=slot;
+    const valid=()=>!controller.signal.aborted&&!this.isSuspended()&&(slot.claimed||this.spare===slot);
+    slot.promise=(async()=>{
+      try{
+        const blob=await this.cache.get(target);
+        if(!valid())throw new DOMException('Aborted','AbortError');
+        slot.decoder=this.createDecoder(target);
+        await slot.decoder.load(blob,controller.signal);
+        if(!valid())throw new DOMException('Aborted','AbortError');
+        await slot.decoder.seek(0,()=>{},controller.signal);
+        if(!valid())throw new DOMException('Aborted','AbortError');
+        slot.ready=true;this.stats.prepared++;
+        return {decoder:slot.decoder,blob};
+      }catch(error){
+        slot.decoder?.dispose();
+        if(this.spare===slot){this.spare=null;this.failedWarm=target;}
+        throw error;
+      }
+    })();
+    // Speculative failure never prevents using the page or retrying on demand.
+    slot.promise.catch(()=>{});
+  }
+  take(index) {
+    const slot=this.spare;
+    if(!slot||slot.index!==index){this.cancelSpare();return null;}
+    this.spare=null;slot.claimed=true;
+    return slot;
+  }
+  cancelSpare() {
+    if(!this.spare)return;
+    const slot=this.spare;this.spare=null;this.stats.cancelled++;slot.cancel();
+  }
+  suspend(index) {
+    this.cancelSpare();this.cache.retain(index<0?[]:[index]);
+  }
+}
+/* END shared chunk buffer */
 const HEADLINES=['The First 1,000','personal or business.','1,000 users.','6 weeks.','3 days in San Francisco.'];
 const SIX_BEAT_HEADLINES=['The First 1,000','Personal.','Business.','1,000 users.','6 weeks.','3 days in San Francisco.'];
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
@@ -466,11 +535,11 @@ const viewportProbe=document.createElement('div');viewportProbe.setAttribute('ar
 const reduced=matchMedia('(prefers-reduced-motion:reduce)'),mobile=matchMedia('(max-width:700px)'),configURL=new URL(document.querySelector('script[data-config]').dataset.config,location.href);
 const retry=document.createElement('button');retry.id='media-retry';retry.type='button';retry.hidden=true;status.after(retry);status.setAttribute('role','status');status.setAttribute('aria-live','polite');
 let readingBeats=null,activeBeat=0;
-let config,manifest,map,chunks,cache,decoder,pendingDecoder,currentIndex=-1,pendingIndex=-1,pendingController,loadSerial=0;
+let config,manifest,map,chunks,cache,buffer,decoder,pendingDecoder,currentIndex=-1,pendingIndex=-1,pendingController,loadSerial=0;
 let raf=0,viewportHeight=0,visibleHeight=innerHeight,wasReduced=reduced.matches,progress=0,active=0,requestedFrame=0,displayedFrame=0,videoBusy=false,mode='loading',firstFrameMs=null,totalBytes=0,firstFrameBytes=0,loadCount=0,seekCount=0,decodedFrames=0,lastRequested=0,direction=1,hasScrolled=false;
 let failedIndex=-1,blockedDecoder=null,recoveryAttempts=0,presentationMethod=null,suspended=document.hidden;
 const attempts=new Map(),errors=[],latencies=[],transfers=[];let quality='desktop';
-const diagnostics=()=>({mode,quality,requestedFrame,displayedFrame,readingBeat:readingBeats?.[activeBeat]?.id??null,decodedMediaTime:displayedFrame/(manifest?.media.fps||24),totalFrames:manifest?.media.frameCount||0,sourceFps:manifest?.media.fps||null,activeChunk:currentIndex,pendingChunk:pendingIndex,chunkCount:chunks?.length||0,cacheEntries:cache?.entries.size||0,cacheBytes:cache?.bytes||0,totalReadBytes:totalBytes,networkTransferBytes:performance.getEntriesByType('resource').filter(e=>/embed-media\/.*\.js/.test(e.name)).reduce((n,e)=>n+e.transferSize,0),firstContentfulPaintMs:performance.getEntriesByName('first-contentful-paint')[0]?.startTime??null,firstFrameBytes,firstFrameMs,loadCount,seekCount,decodedFrames,activeVideoCount:mediaLayer.querySelectorAll('video').length,seekLatenciesMs:latencies.slice(-64),transfers:transfers.slice(-8),errors:[...errors],presentationMethod,recoveryAttempts,videoBusy,suspended,resourceTimings:performance.getEntriesByType('resource').filter(e=>/embed-media\/.*\.js/.test(e.name)).slice(-8).map(e=>({url:e.name.split('/').at(-1),durationMs:Math.round(e.duration),transferSize:e.transferSize,encodedBodySize:e.encodedBodySize}))});
+const diagnostics=()=>({mode,quality,requestedFrame,displayedFrame,readingBeat:readingBeats?.[activeBeat]?.id??null,decodedMediaTime:displayedFrame/(manifest?.media.fps||24),totalFrames:manifest?.media.frameCount||0,sourceFps:manifest?.media.fps||null,activeChunk:currentIndex,pendingChunk:pendingIndex,chunkCount:chunks?.length||0,cacheEntries:cache?.entries.size||0,warmChunk:buffer?.spare?.index??-1,warmReady:buffer?.spare?.ready??false,bufferStats:buffer?{...buffer.stats}:null,cacheBytes:cache?.bytes||0,totalReadBytes:totalBytes,networkTransferBytes:performance.getEntriesByType('resource').filter(e=>/embed-media\/.*\.js/.test(e.name)).reduce((n,e)=>n+e.transferSize,0),firstContentfulPaintMs:performance.getEntriesByName('first-contentful-paint')[0]?.startTime??null,firstFrameBytes,firstFrameMs,loadCount,seekCount,decodedFrames,activeVideoCount:mediaLayer.querySelectorAll('video').length,seekLatenciesMs:latencies.slice(-64),transfers:transfers.slice(-8),errors:[...errors],presentationMethod,recoveryAttempts,videoBusy,suspended,resourceTimings:performance.getEntriesByType('resource').filter(e=>/embed-media\/.*\.js/.test(e.name)).slice(-8).map(e=>({url:e.name.split('/').at(-1),durationMs:Math.round(e.duration),transferSize:e.transferSize,encodedBodySize:e.encodedBodySize}))});
 Object.defineProperty(window,'__journeyDiagnostics',{get:diagnostics});
 function announce(text){status.textContent=text;status.hidden=!text;}
 function schedule(){if(!raf&&!suspended&&!document.hidden)raf=requestAnimationFrame(render);}
@@ -517,19 +586,31 @@ async function requestSeek(){
     failure(error,index,()=>{currentIndex=-1;switchChunk(index);});
   }finally{if(decoder===current){videoBusy=false;if(!suspended&&!document.hidden)requestSeek();schedule();}}
 }
-async function prefetch(){/* Demand-only script transport: no speculative/full-film download. */}
+function prefetch(index,serial){
+  if(serial!==loadSerial||pendingIndex>=0||suspended||reduced.matches)return;
+  buffer.prefetch(index,direction);
+}
 async function switchChunk(index){
   if(index===pendingIndex||failedIndex===index||suspended)return;
   const serial=++loadSerial;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;decoder?.cancelSeek();videoBusy=false;
   pendingController=new AbortController();const signal=pendingController.signal;
-  pendingIndex=index;cache.retain([index,index-1,index+1]);announce('');
+  const warm=buffer.take(index),cancelWarm=()=>warm?.cancel();
+  signal.addEventListener('abort',cancelWarm,{once:true});
+  pendingIndex=index;buffer.retain(index,direction);announce('');
   let next;
   try{
-    const started=performance.now(),blob=await cache.get(index);if(serial!==loadSerial||signal.aborted)return;
-    next=new ChunkDecoder(mediaLayer,{fps:manifest.media.fps,frameCount:chunks[index].frameCount});pendingDecoder=next;
-    await next.load(blob,signal);
+    const started=performance.now();let blob;
+    if(warm){
+      try{({decoder:next,blob}=await warm.promise);buffer.stats.reused++;}
+      catch(error){if(signal.aborted)throw error;warm.cancel();next=null;}
+    }
     if(serial!==loadSerial||signal.aborted)return;
-    // Read newest target after startup, then drain any in-chunk scroll updates.
+    if(!next){
+      blob=await cache.get(index);if(serial!==loadSerial||signal.aborted)return;
+      next=new ChunkDecoder(mediaLayer,{fps:manifest.media.fps,frameCount:chunks[index].frameCount});pendingDecoder=next;
+      await next.load(blob,signal);
+    }else pendingDecoder=next;
+    if(serial!==loadSerial||signal.aborted)return;
     const frame=requestedFrame;
     await next.seek(frame-chunks[index].startFrame,(v,local,method)=>{
       if(serial!==loadSerial||signal.aborted||chunkAtFrame(chunks,requestedFrame)!==index)throw new DOMException('Superseded','AbortError');
@@ -538,13 +619,13 @@ async function switchChunk(index){
     if(serial!==loadSerial||signal.aborted)return;
     decoder?.dispose();decoder=next;pendingDecoder=null;next=null;currentIndex=index;pendingIndex=-1;loadCount++;videoBusy=false;
     attempts.delete(index);failedIndex=-1;retry.hidden=true;
-    transfers.push({chunk:index,readyMs:Math.round(performance.now()-started),bytes:blob.size});announce('');schedule();prefetch(index,serial);
+    transfers.push({chunk:index,readyMs:Math.round(performance.now()-started),bytes:blob.size,warm:!!warm});announce('');schedule();prefetch(index,serial);
   }catch(error){
     if(error.name==='AbortError'||error.cause?.name==='AbortError'||serial!==loadSerial||suspended)return;
     pendingIndex=-1;pendingDecoder=null;
     if(error.kind==='activation'){blockedDecoder?.dispose();blockedDecoder=next;next=null;}
     failure(error,index,()=>{schedule();});
-  }finally{next?.dispose();if(serial===loadSerial)pendingDecoder=null;}
+  }finally{signal.removeEventListener('abort',cancelWarm);next?.dispose();if(serial===loadSerial)pendingDecoder=null;}
 }
 function renderText(frame){
   active=sceneAtFrame(frame,manifest);mediaLayer.style.backgroundColor=config.sceneSkies?.[active]||config.sky||'#285571';
@@ -567,8 +648,8 @@ function render(){
   const index=chunkAtFrame(chunks,requestedFrame);
   if(failedIndex>=0&&failedIndex!==index)clearFailure();
   if(index!==currentIndex){if(index!==pendingIndex)switchChunk(index);}else{
-    if(pendingIndex>=0){loadSerial++;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;pendingIndex=-1;cache.retain([index,index-1,index+1]);announce('');}
-    requestSeek();if(hasScrolled)prefetch(index,loadSerial);
+    if(pendingIndex>=0){loadSerial++;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;pendingIndex=-1;buffer.retain(index,direction);announce('');}
+    requestSeek();prefetch(index,loadSerial);
   }
   renderText(displayedFrame);
 }
@@ -659,6 +740,7 @@ for(const link of document.querySelectorAll('a[href="sms:+16287264285"]'))link.a
 window.dispatchEvent(new CustomEvent('ascent:embed-ready',{detail:{api:window.AscentPremiumEmbed}}));
 async function retryVideo(){
   if(!manifest||suspended||retry.disabled)return;
+  buffer.cancelSpare();
   const index=chunkAtFrame(chunks,requestedFrame),blocked=blockedDecoder;
   // Synchronous play preserves gesture activation; token guards every later stage.
   const serial=++loadSerial;pendingController?.abort();pendingController=new AbortController();
@@ -686,9 +768,9 @@ addEventListener('pointerdown',event=>{if(blockedDecoder&&!retry.contains(event.
 buttons.forEach(button=>button.addEventListener('click',()=>go(Number(button.dataset.go))));
 document.querySelector('[data-scroll-cue]')?.addEventListener('click',()=>go(1));
 addEventListener('resize',resize,{passive:true});reduced.addEventListener('change',resize);
-function suspend(){suspended=true;loadSerial++;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;pendingIndex=-1;decoder?.cancelSeek();decoder?.video.pause();videoBusy=false;cache?.retain(currentIndex<0?[]:[currentIndex]);cancelAnimationFrame(raf);raf=0;}
+function suspend(){suspended=true;loadSerial++;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;pendingIndex=-1;decoder?.cancelSeek();decoder?.video.pause();videoBusy=false;buffer?.suspend(currentIndex);cancelAnimationFrame(raf);raf=0;}
 function resume(){
-  suspended=false;if(cache&&currentIndex>=0)cache.retain([currentIndex,currentIndex-1,currentIndex+1]);
+  suspended=false;if(buffer&&currentIndex>=0)buffer.retain(currentIndex,direction);
   if(decoder){const current=decoder;videoBusy=true;current.activate().catch(()=>{}).finally(()=>{if(decoder===current){videoBusy=false;schedule();}});}
   else schedule();
 }
@@ -703,6 +785,7 @@ try{
   const index=validateChunks(inline.chunkIndex,manifest);
   quality=mobile.matches||navigator.connection?.saveData?'mobile':'desktop';chunks=index.renditions[quality].chunks;
   cache=new ChunkCache(chunks,manifestURL,{onTransfer:bytes=>{totalBytes+=bytes;},onProgress:()=>{}});
+  buffer=new ChunkBuffer({cache,createDecoder:index=>new ChunkDecoder(mediaLayer,{fps:manifest.media.fps,frameCount:chunks[index].frameCount}),isSuspended:()=>suspended||document.hidden,saveData:!!navigator.connection?.saveData});
   resize();schedule();
 }catch(error){errors.push(error.message);mode='unavailable';announce('Video unavailable. You can still use the application form.');}
 if(new URLSearchParams(location.search).has('qa')){const output=document.createElement('output');output.id='review-diagnostics';output.setAttribute('aria-label','Live video QA diagnostics');document.body.append(output);setInterval(()=>{output.textContent=JSON.stringify(diagnostics());},250);}

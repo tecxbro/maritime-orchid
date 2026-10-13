@@ -1,13 +1,13 @@
 {
   "scope": "Premium X player only",
-  "sourceCommit": "e5efa016e857a25004cd0bee825558fd7b9c1b45",
-  "fileCountExcludingManifest": 126,
-  "totalBytesExcludingManifest": 62921309,
+  "sourceCommit": "180959019a4141ce7f61b348c0f92c44c2de4ac6",
+  "fileCountExcludingManifest": 129,
+  "totalBytesExcludingManifest": 62938829,
   "files": [
     {
       "path": "README.md",
-      "bytes": 3620,
-      "sha256": "bb010c5f453fd1143e69dbcbb71a8c294f0154919f491612fce23ff9cbcfb6a6"
+      "bytes": 4225,
+      "sha256": "65e601098c09c0b0a99cf15e9d0ba45d2da31974c7c8d6c35cb836e3707ccda7"
     },
     {
       "path": "backend/Code.gs",
@@ -261,8 +261,8 @@
     },
     {
       "path": "dist/index.html",
-      "bytes": 61155,
-      "sha256": "c7022aa6758a8d1e7681bec20acf636d6254d7a68009f2e8e696cf3e9b9e0e6b"
+      "bytes": 61137,
+      "sha256": "02aa03eee61229d0ebdba7d8d0cac43889580abbbbee9cdfa60127a1e4bf47b5"
     },
     {
       "path": "dist/media/card-preview.png",
@@ -270,14 +270,14 @@
       "sha256": "ac882927752e2c133ad4f9ebe8d86ad0db620533ef02a64cd0a129927f94872d"
     },
     {
-      "path": "dist/player/index.html",
-      "bytes": 61170,
-      "sha256": "3f29ba6c2da9af0a8a8c53563dda513fcb9878bf911f209d5dec4320602b7835"
+      "path": "dist/player.html",
+      "bytes": 61137,
+      "sha256": "02aa03eee61229d0ebdba7d8d0cac43889580abbbbee9cdfa60127a1e4bf47b5"
     },
     {
-      "path": "dist/player.html",
-      "bytes": 61155,
-      "sha256": "c7022aa6758a8d1e7681bec20acf636d6254d7a68009f2e8e696cf3e9b9e0e6b"
+      "path": "dist/player/index.html",
+      "bytes": 61152,
+      "sha256": "6d7caa04677cf95a0e5882c00d3381810a00ae6580f62f6b496dad926ab1cfb7"
     },
     {
       "path": "dist/profiles/landscape/chunk-index.json",
@@ -560,9 +560,14 @@
       "sha256": "bfbd26de39a76640bf2763d60778f4c3e3241fe7020f8eb3cba107df19bff23e"
     },
     {
+      "path": "dist/shared/chunk-buffer.mjs",
+      "bytes": 2998,
+      "sha256": "071b6d49534d43d16521ae6d334f0bf1b422f917c629d89806ee68977bb94bd1"
+    },
+    {
       "path": "dist/shared/embed-runtime.js",
-      "bytes": 51675,
-      "sha256": "9fd3b21cf04e43c4e8e6c7b684aab7ac766b9cf44085dfdefd394980afa33fa9"
+      "bytes": 55476,
+      "sha256": "009ac47523380b7087b6615c0e818fc321549923ef2b628319b5e4b43c4352d4"
     },
     {
       "path": "dist/shared/embed.css",
@@ -576,8 +581,8 @@
     },
     {
       "path": "dist/shared/player.js",
-      "bytes": 25816,
-      "sha256": "9a3e3afc5bb6396d01ea4609dcecfad9cc5804212c0ac5e92e7785e05b25f709"
+      "bytes": 26326,
+      "sha256": "0cdbd399d21ce61fffef7c586435c36c70b2e941ec89840cacc71d4a55c179cd"
     },
     {
       "path": "dist/shared/premium-layout.css",
@@ -605,14 +610,24 @@
       "sha256": "aed400ae66081b49d5e018094ac9afe0adf828bfddbb0b0736508b2ea4f6bd8c"
     },
     {
+      "path": "dist/terms.html",
+      "bytes": 6592,
+      "sha256": "95b1b6a0d3129503425c4937a38632f65b53172111f26425e0e105ba9774c937"
+    },
+    {
       "path": "dist/terms/index.html",
       "bytes": 6592,
       "sha256": "95b1b6a0d3129503425c4937a38632f65b53172111f26425e0e105ba9774c937"
     },
     {
-      "path": "dist/terms.html",
-      "bytes": 6592,
-      "sha256": "95b1b6a0d3129503425c4937a38632f65b53172111f26425e0e105ba9774c937"
+      "path": "scripts/sync-chunk-buffer.mjs",
+      "bytes": 952,
+      "sha256": "e74ff133a0648abb62d4f4097dbd798d613d1c531be0b3fd3557dd8c8137c202"
+    },
+    {
+      "path": "verification/chunk-buffer.test.mjs",
+      "bytes": 7793,
+      "sha256": "000cda67a37711be7c162e298cc45d317106af6ff80e69f9647288696853714f"
     },
     {
       "path": "verification/poster-markup.test.mjs",
@@ -621,13 +636,13 @@
     },
     {
       "path": "verification/premium-card-harness.mjs",
-      "bytes": 15271,
-      "sha256": "378ffe6594c75c6b3a243766d2344fdda3a662729f555a9e045d671958a58fc9"
+      "bytes": 16165,
+      "sha256": "922eadd2e50d8d44e95c02b7c5c8120f441dc2d359153efc6c9a74a978078cbd"
     },
     {
       "path": "verification/premium-card.test.mjs",
-      "bytes": 5669,
-      "sha256": "a5e2086fcc4fa2189f3e90d1a97c7d3f5d1eabf1a8d9f9b4fbbdf0319ff65021"
+      "bytes": 5690,
+      "sha256": "6ac63e8dca335756482a9e06159d999fd763de5fd5b37e66ffa8ca0f05d66d79"
     },
     {
       "path": "verification/quiet-card-preservation.json",

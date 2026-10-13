@@ -1,4 +1,5 @@
 // First1000 progressive2 lifecycle repair. Media remains independent Blob chunks.
+import {ChunkBuffer} from './chunk-buffer.mjs?v=20261013-buffer9';
 import {ChunkCache,ChunkDecoder} from './media-lifecycle.mjs?v=20261013-scroll2';
 import {bootstrapProfile} from './profile-bootstrap.mjs?v=20261013-premium-bootstrap1';
 const HEADLINES=['The First 1,000','personal or business.','1,000 users.','6 weeks.','3 days in San Francisco.'];
@@ -94,11 +95,11 @@ const viewportProbe=document.createElement('div');viewportProbe.setAttribute('ar
 const reduced=matchMedia('(prefers-reduced-motion:reduce)'),mobile=matchMedia('(max-width:700px)'),configURL=new URL(document.querySelector('script[data-config]').dataset.config,location.href);
 const retry=document.createElement('button');retry.id='media-retry';retry.type='button';retry.hidden=true;status.after(retry);status.setAttribute('role','status');status.setAttribute('aria-live','polite');
 let readingBeats=null,activeBeat=0;
-let config,manifest,map,chunks,cache,decoder,pendingDecoder,currentIndex=-1,pendingIndex=-1,pendingController,loadSerial=0;
+let config,manifest,map,chunks,cache,buffer,decoder,pendingDecoder,currentIndex=-1,pendingIndex=-1,pendingController,loadSerial=0;
 let raf=0,viewportHeight=0,visibleHeight=innerHeight,wasReduced=reduced.matches,progress=0,active=0,requestedFrame=0,displayedFrame=0,videoBusy=false,mode='loading',firstFrameMs=null,totalBytes=0,firstFrameBytes=0,loadCount=0,seekCount=0,decodedFrames=0,lastRequested=0,direction=1,hasScrolled=false;
 let failedIndex=-1,blockedDecoder=null,recoveryAttempts=0,presentationMethod=null,suspended=document.hidden;
 const attempts=new Map(),errors=[],latencies=[],transfers=[];let quality='desktop';
-const diagnostics=()=>({mode,quality,requestedFrame,displayedFrame,readingBeat:readingBeats?.[activeBeat]?.id??null,decodedMediaTime:displayedFrame/(manifest?.media.fps||24),totalFrames:manifest?.media.frameCount||0,sourceFps:manifest?.media.fps||null,activeChunk:currentIndex,pendingChunk:pendingIndex,chunkCount:chunks?.length||0,cacheEntries:cache?.entries.size||0,cacheBytes:cache?.bytes||0,totalReadBytes:totalBytes,networkTransferBytes:performance.getEntriesByType('resource').filter(e=>/chunks\/.*mp4/.test(e.name)).reduce((n,e)=>n+e.transferSize,0),firstContentfulPaintMs:performance.getEntriesByName('first-contentful-paint')[0]?.startTime??null,firstFrameBytes,firstFrameMs,loadCount,seekCount,decodedFrames,activeVideoCount:mediaLayer.querySelectorAll('video').length,seekLatenciesMs:latencies.slice(-64),transfers:transfers.slice(-8),errors:[...errors],presentationMethod,recoveryAttempts,videoBusy,suspended,resourceTimings:performance.getEntriesByType('resource').filter(e=>/chunks\/.*mp4/.test(e.name)).slice(-8).map(e=>({url:e.name.split('/').at(-1),durationMs:Math.round(e.duration),transferSize:e.transferSize,encodedBodySize:e.encodedBodySize}))});
+const diagnostics=()=>({mode,quality,requestedFrame,displayedFrame,readingBeat:readingBeats?.[activeBeat]?.id??null,decodedMediaTime:displayedFrame/(manifest?.media.fps||24),totalFrames:manifest?.media.frameCount||0,sourceFps:manifest?.media.fps||null,activeChunk:currentIndex,pendingChunk:pendingIndex,chunkCount:chunks?.length||0,cacheEntries:cache?.entries.size||0,warmChunk:buffer?.spare?.index??-1,warmReady:buffer?.spare?.ready??false,bufferStats:buffer?{...buffer.stats}:null,cacheBytes:cache?.bytes||0,totalReadBytes:totalBytes,networkTransferBytes:performance.getEntriesByType('resource').filter(e=>/chunks\/.*mp4/.test(e.name)).reduce((n,e)=>n+e.transferSize,0),firstContentfulPaintMs:performance.getEntriesByName('first-contentful-paint')[0]?.startTime??null,firstFrameBytes,firstFrameMs,loadCount,seekCount,decodedFrames,activeVideoCount:mediaLayer.querySelectorAll('video').length,seekLatenciesMs:latencies.slice(-64),transfers:transfers.slice(-8),errors:[...errors],presentationMethod,recoveryAttempts,videoBusy,suspended,resourceTimings:performance.getEntriesByType('resource').filter(e=>/chunks\/.*mp4/.test(e.name)).slice(-8).map(e=>({url:e.name.split('/').at(-1),durationMs:Math.round(e.duration),transferSize:e.transferSize,encodedBodySize:e.encodedBodySize}))});
 Object.defineProperty(window,'__journeyDiagnostics',{get:diagnostics});
 function announce(text){status.textContent=text;status.hidden=!text;}
 function schedule(){if(!raf&&!suspended&&!document.hidden)raf=requestAnimationFrame(render);}
@@ -145,25 +146,31 @@ async function requestSeek(){
     failure(error,index,()=>{currentIndex=-1;switchChunk(index);});
   }finally{if(decoder===current){videoBusy=false;if(!suspended&&!document.hidden)requestSeek();schedule();}}
 }
-async function prefetch(index,serial){
-  if(!hasScrolled||navigator.connection?.saveData||suspended)return;
-  for(const neighbor of [index+direction,index-direction]){
-    if(serial!==loadSerial||suspended)return;if(neighbor<0||neighbor>=chunks.length)continue;
-    try{await cache.get(neighbor);}catch(error){if(error.name!=='AbortError')transfers.push({prefetch:neighbor,error:error.message});}
-  }
+function prefetch(index,serial){
+  if(serial!==loadSerial||pendingIndex>=0||suspended||reduced.matches)return;
+  buffer.prefetch(index,direction);
 }
 async function switchChunk(index){
   if(index===pendingIndex||failedIndex===index||suspended)return;
   const serial=++loadSerial;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;decoder?.cancelSeek();videoBusy=false;
   pendingController=new AbortController();const signal=pendingController.signal;
-  pendingIndex=index;cache.retain([index,index-1,index+1]);announce('');
+  const warm=buffer.take(index),cancelWarm=()=>warm?.cancel();
+  signal.addEventListener('abort',cancelWarm,{once:true});
+  pendingIndex=index;buffer.retain(index,direction);announce('');
   let next;
   try{
-    const started=performance.now(),blob=await cache.get(index);if(serial!==loadSerial||signal.aborted)return;
-    next=new ChunkDecoder(mediaLayer,{fps:manifest.media.fps,frameCount:chunks[index].frameCount});pendingDecoder=next;
-    await next.load(blob,signal);
+    const started=performance.now();let blob;
+    if(warm){
+      try{({decoder:next,blob}=await warm.promise);buffer.stats.reused++;}
+      catch(error){if(signal.aborted)throw error;warm.cancel();next=null;}
+    }
     if(serial!==loadSerial||signal.aborted)return;
-    // Read newest target after startup, then drain any in-chunk scroll updates.
+    if(!next){
+      blob=await cache.get(index);if(serial!==loadSerial||signal.aborted)return;
+      next=new ChunkDecoder(mediaLayer,{fps:manifest.media.fps,frameCount:chunks[index].frameCount});pendingDecoder=next;
+      await next.load(blob,signal);
+    }else pendingDecoder=next;
+    if(serial!==loadSerial||signal.aborted)return;
     const frame=requestedFrame;
     await next.seek(frame-chunks[index].startFrame,(v,local,method)=>{
       if(serial!==loadSerial||signal.aborted||chunkAtFrame(chunks,requestedFrame)!==index)throw new DOMException('Superseded','AbortError');
@@ -172,13 +179,13 @@ async function switchChunk(index){
     if(serial!==loadSerial||signal.aborted)return;
     decoder?.dispose();decoder=next;pendingDecoder=null;next=null;currentIndex=index;pendingIndex=-1;loadCount++;videoBusy=false;
     attempts.delete(index);failedIndex=-1;retry.hidden=true;
-    transfers.push({chunk:index,readyMs:Math.round(performance.now()-started),bytes:blob.size});announce('');schedule();prefetch(index,serial);
+    transfers.push({chunk:index,readyMs:Math.round(performance.now()-started),bytes:blob.size,warm:!!warm});announce('');schedule();prefetch(index,serial);
   }catch(error){
     if(error.name==='AbortError'||error.cause?.name==='AbortError'||serial!==loadSerial||suspended)return;
     pendingIndex=-1;pendingDecoder=null;
     if(error.kind==='activation'){blockedDecoder?.dispose();blockedDecoder=next;next=null;}
     failure(error,index,()=>{schedule();});
-  }finally{next?.dispose();if(serial===loadSerial)pendingDecoder=null;}
+  }finally{signal.removeEventListener('abort',cancelWarm);next?.dispose();if(serial===loadSerial)pendingDecoder=null;}
 }
 function renderText(frame){
   active=sceneAtFrame(frame,manifest);mediaLayer.style.backgroundColor=config.sceneSkies?.[active]||config.sky||'#285571';
@@ -201,8 +208,8 @@ function render(){
   const index=chunkAtFrame(chunks,requestedFrame);
   if(failedIndex>=0&&failedIndex!==index)clearFailure();
   if(index!==currentIndex){if(index!==pendingIndex)switchChunk(index);}else{
-    if(pendingIndex>=0){loadSerial++;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;pendingIndex=-1;cache.retain([index,index-1,index+1]);announce('');}
-    requestSeek();if(hasScrolled)prefetch(index,loadSerial);
+    if(pendingIndex>=0){loadSerial++;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;pendingIndex=-1;buffer.retain(index,direction);announce('');}
+    requestSeek();prefetch(index,loadSerial);
   }
   renderText(displayedFrame);
 }
@@ -231,6 +238,7 @@ function resize(){
 function go(index){if(!manifest)return;const steps=readingBeats||manifest.scenes,last=steps.length-1;index=clamp(index,0,last);const target=index===last?Math.min(steps[last].readEndFrame,steps[last].endFrame-1):steps[index].readStartFrame;requestedFrame=target;progress=index===last?1:progressAtFrame(target,map);scrollTo({top:track.offsetTop+(reduced.matches?articles[index].offsetTop:progress*viewportHeight*(config.scrollHeight-1)),behavior:'instant'});schedule();}
 async function retryVideo(){
   if(!manifest||suspended)return;
+  buffer.cancelSpare();
   const index=chunkAtFrame(chunks,requestedFrame),blocked=blockedDecoder;
   // Calling play before the first await preserves the browser's gesture activation.
   const activation=blocked?.activate({force:true});retry.disabled=true;
@@ -259,9 +267,9 @@ buttons.forEach(button=>button.addEventListener('click',()=>go(Number(button.dat
 document.querySelector('[data-scroll-cue]')?.addEventListener('click',()=>go(1));
 addEventListener('keydown',event=>{if(event.altKey||event.ctrlKey||event.metaKey||event.shiftKey||event.target.closest('input,textarea,select,[contenteditable]'))return;const current=readingBeats?activeBeat:active,last=(readingBeats||manifest?.scenes||HEADLINES).length-1;const targets={Home:0,End:last,ArrowRight:current+1,ArrowLeft:current-1};if(event.key in targets){event.preventDefault();go(targets[event.key]);}});
 addEventListener('scroll',schedule,{passive:true});addEventListener('resize',resize,{passive:true});reduced.addEventListener('change',resize);
-function suspend(){suspended=true;loadSerial++;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;pendingIndex=-1;decoder?.cancelSeek();decoder?.video.pause();videoBusy=false;cache?.retain(currentIndex<0?[]:[currentIndex]);cancelAnimationFrame(raf);raf=0;}
+function suspend(){suspended=true;loadSerial++;pendingController?.abort();pendingDecoder?.dispose();pendingDecoder=null;pendingIndex=-1;decoder?.cancelSeek();decoder?.video.pause();videoBusy=false;buffer?.suspend(currentIndex);cancelAnimationFrame(raf);raf=0;}
 function resume(){
-  suspended=false;if(cache&&currentIndex>=0)cache.retain([currentIndex,currentIndex-1,currentIndex+1]);
+  suspended=false;if(buffer&&currentIndex>=0)buffer.retain(currentIndex,direction);
   if(decoder){const current=decoder;videoBusy=true;current.activate().catch(()=>{}).finally(()=>{if(decoder===current){videoBusy=false;schedule();}});}
   else schedule();
 }
@@ -284,6 +292,7 @@ try{
   const index=validateChunks(inline?.chunkIndex||await json(new URL(manifest.media.chunkIndex,manifestURL)),manifest);
   quality=mobile.matches||navigator.connection?.saveData?'mobile':'desktop';chunks=index.renditions[quality].chunks;
   cache=new ChunkCache(chunks,manifestURL,{onTransfer:bytes=>{totalBytes+=bytes;},onProgress:()=>{}});
+  buffer=new ChunkBuffer({cache,createDecoder:index=>new ChunkDecoder(mediaLayer,{fps:manifest.media.fps,frameCount:chunks[index].frameCount}),isSuspended:()=>suspended||document.hidden,saveData:!!navigator.connection?.saveData});
   experimentInfo();resize();schedule();
 }catch(error){errors.push(error.message);mode='unavailable';announce('Video unavailable. You can still apply by SMS.');}
 if(new URLSearchParams(location.search).has('qa')){const output=document.createElement('output');output.id='review-diagnostics';output.setAttribute('aria-label','Live video QA diagnostics');document.body.append(output);setInterval(()=>{output.textContent=JSON.stringify(diagnostics());},250);}

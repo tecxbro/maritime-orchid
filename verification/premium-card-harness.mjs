@@ -10,8 +10,16 @@ import {bootstrapProfile, selectInitialProfile} from '../dist/shared/profile-boo
 // Point PLAYER_DIR at a separate candidate's dist/shared directory to run the same contract.
 export const sourceDirectory = fileURLToPath(new URL('../dist/shared/', import.meta.url));
 const playerSource = await fs.readFile(path.join(sourceDirectory, 'embed-runtime.js'), 'utf8');
-const receipt=JSON.parse(await fs.readFile('/workspace/shared/first1000-rebuild/ascent-premium-build-20261013/embed-overlay/receipt.json','utf8'));
-const wrappers=new Map(await Promise.all(receipt.wrappers.map(async w=>[w.path,await fs.readFile(path.join(sourceDirectory,'..',w.path),'utf8')])));
+const wrappers=new Map();
+export const nativePayloads=new Map();
+for(const profile of ['landscape','portrait'])for(const file of await fs.readdir(path.join(sourceDirectory,'../embed-media',profile))){
+  const key=`embed-media/${profile}/${file}`;
+  wrappers.set(key,await fs.readFile(path.join(sourceDirectory,'..',key),'utf8'));
+  const nativePath=`profiles/${profile}/chunks/${file.replace('.js','.mp4')}`;
+  nativePayloads.set(nativePath,await fs.readFile(path.join(sourceDirectory,'..',nativePath)));
+}
+const withoutExports=source=>source.replace(/^export /gm,'');
+const nativeSource=(await Promise.all(['media-lifecycle.mjs','chunk-buffer.mjs','profile-bootstrap.mjs','player.js'].map(file=>fs.readFile(path.join(sourceDirectory,file),'utf8')))).map(source=>withoutExports(source).replace(/^import .*;\n/gm,'')).join('\n');
 const helpers=playerSource.slice(playerSource.indexOf('const HEADLINES='),playerSource.indexOf('const track='));
 const timeline=vm.runInNewContext(`(()=>{${helpers};return {HEADLINES,validateManifest,buildScrollMap,frameAtProgress,progressAtFrame,sceneAtFrame,captionOpacity,validateChunks,chunkAtFrame};})()`);
 
@@ -19,7 +27,7 @@ const timeline=vm.runInNewContext(`(()=>{${helpers};return {HEADLINES,validateMa
 export const deferred = () => {let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b;});return {promise,resolve,reject};};
 export async function settle(turns=5){for(let i=0;i<turns;i++)await new Promise(resolve=>setImmediate(resolve));}
 
-export async function createPlayer({saveData=false,mobile=false,reduced=false,coarse=false,autoSeek=true,frameCallbacks=false,fetchChunk,decodeReady=true,height=1000,smallHeight=height,width=390,articleHeights=null,trackTop=0,roundScroll=false,manifestOverride,configOverride,bundleOverride,videoSetup,scriptSetup}={}) {
+export async function createPlayer({playerKind='embed',saveData=false,mobile=false,reduced=false,coarse=false,autoSeek=true,frameCallbacks=false,fetchChunk,decodeReady=true,height=1000,smallHeight=height,width=390,articleHeights=null,trackTop=0,roundScroll=false,manifestOverride,configOverride,bundleOverride,videoSetup,scriptSetup}={}) {
   const supplied = bundleOverride?.profiles[selectInitialProfile({viewportWidth:width,viewportHeight:height})];
   configOverride ??= supplied?.config; manifestOverride ??= supplied?.manifest;
   const reads=[],draws=[],videos=[],scrollRequests=[],callbacks=new Map(),timers=new Map(),windowEvents=new EventTarget();
@@ -83,17 +91,19 @@ export async function createPlayer({saveData=false,mobile=false,reduced=false,co
     if(url.endsWith('config.json'))return Response.json(config);
     if(url.endsWith('manifest.json'))return Response.json(manifest);
     if(url.endsWith('chunk-index.json'))return Response.json(index);
-    const match=url.match(/chunks\/(\d+)\.mp4$/);if(!match)throw Error(`Unexpected fetch ${url}`);
-    return fetchChunk?fetchChunk(Number(match[1]),options):new Response(new Uint8Array(4));
+    const match=url.match(/chunks\/(?:desktop|mobile)-(\d+)\.mp4$/);
+    if(!match)throw Error(`Unexpected fetch ${url}`);
+    const nativePath=url.slice(url.indexOf('/profiles/')+1);
+    return fetchChunk?fetchChunk(Number(match[1]),options,nativePath):new Response(nativePayloads.get(nativePath));
   };
-  sandbox={...timeline,document,window:windowEvents,location:new URL('https://example.test/variant/'),navigator:{connection:{saveData}},innerHeight:height,innerWidth:width,scrollY:0,fetch:(...args)=>{throw Error('Opaque sandbox must not fetch: '+args[0]);},URL,URLSearchParams,AbortController,DOMException,Blob,Event,atob,Uint8Array,CustomEvent:class extends Event{constructor(type,opts={}){super(type,opts);this.detail=opts.detail;}},console,performance:{now:()=>time,getEntriesByType:()=>[],getEntriesByName:()=>[]},queueMicrotask,
+  sandbox={...timeline,document,window:windowEvents,location:new URL('https://example.test/variant/'),navigator:{connection:{saveData}},innerHeight:height,innerWidth:width,scrollY:0,fetch:playerKind==='native'?fetcher:(...args)=>{throw Error('Opaque sandbox must not fetch: '+args[0]);},URL,URLSearchParams,AbortController,DOMException,Blob,Event,atob,Uint8Array,CustomEvent:class extends Event{constructor(type,opts={}){super(type,opts);this.detail=opts.detail;}},console,performance:{now:()=>time,getEntriesByType:()=>[],getEntriesByName:()=>[]},queueMicrotask,
     matchMedia:query=>{const mq=Object.assign(new EventTarget(),{media:query,matches:query.includes('max-width')?mobile:query.includes('pointer:coarse')?coarse:reduced});mediaQueries.push(mq);return mq;},
     addEventListener:(...args)=>windowEvents.addEventListener(...args),
     requestAnimationFrame:fn=>{const id=++counter;callbacks.set(id,fn);return id;},cancelAnimationFrame:id=>callbacks.delete(id),
     setTimeout:(fn,ms)=>{const id=++counter;timers.set(id,{fn,ms,due:time+ms});return id;},clearTimeout:id=>timers.delete(id),setInterval:()=>++counter,
     scrollTo:({top})=>{scrollRequests.push(top);sandbox.scrollY=Math.max(0,Math.min(roundScroll?Math.floor(top):top,document.documentElement.scrollHeight-sandbox.innerHeight));},
   };
-  const source=playerSource.slice(playerSource.indexOf('(async()=>{')+'(async()=>{'.length,playerSource.lastIndexOf('})();'));
+  const source=playerKind==='native'?nativeSource:playerSource.slice(playerSource.indexOf('(async()=>{')+'(async()=>{'.length,playerSource.lastIndexOf('})();'));
   const context=vm.createContext(sandbox);
   document.head.append=(script)=>{
     script.parent=document.head;document.head.children.push(script);
@@ -109,7 +119,7 @@ export async function createPlayer({saveData=false,mobile=false,reduced=false,co
   ModelURL.createObjectURL=blob=>{const url=nativeCreate(blob);blobs.set(url,blob);return url;};
   ModelURL.revokeObjectURL=url=>{blobs.delete(url);nativeRevoke(url);};sandbox.URL=ModelURL;
   const originalLoad=Video.prototype.load;Video.prototype.load=function(){const blob=blobs.get(this.src);if(blob){const chunk=supplied.chunkIndex.renditions[mobile||saveData?'mobile':'desktop'].chunks.find(c=>c.bytes===blob.size);if(chunk)this.duration=chunk.frameCount/supplied.manifest.media.fps;}return originalLoad.call(this);};
-  const api=await new vm.Script(`(async()=>{${source}\nreturn {moveEmbed,getOffset(){return embedOffset;},render,diagnostics,prefetch,switchChunk,requestSeek,go,getProgress(){return progress;},setRequestedFrame(frame){requestedFrame=frame;},setDirection(value){direction=value;hasScrolled=true;},getCache(){return cache;},getSerial(){return loadSerial;},retryVideo,getRetry(){return retry;},getDecoder(){return decoder;},getBlocked(){return blockedDecoder;},getPending(){return pendingDecoder;},getFailed(){return failedIndex;},getWarm(){return typeof warmSpare==='undefined'?null:warmSpare;}};})()`,{filename:'actual-player.js'}).runInContext(context);
+  const api=await new vm.Script(`(async()=>{${source}\nreturn {moveEmbed:typeof moveEmbed==='undefined'?()=>{}:moveEmbed,getOffset(){return typeof embedOffset==='undefined'?0:embedOffset;},render,diagnostics,prefetch,switchChunk,requestSeek,go,getProgress(){return progress;},setRequestedFrame(frame){requestedFrame=frame;},setDirection(value){direction=value;hasScrolled=true;},getCache(){return cache;},getSerial(){return loadSerial;},retryVideo,getRetry(){return retry;},getDecoder(){return decoder;},getBlocked(){return blockedDecoder;},getPending(){return pendingDecoder;},getFailed(){return failedIndex;},getWarm(){return buffer?.spare;}};})()`,{filename:'actual-player.js'}).runInContext(context);
   async function advance(ms){
     const until=time+ms;let count=0;
     for(;;){
@@ -128,7 +138,7 @@ export async function createPlayer({saveData=false,mobile=false,reduced=false,co
     blobs,context,elements,articles,buttons,reads,draws,videos,timers,manifest,chunks,scrollRequests,windowEvents,sandbox,advance,now:()=>time,peakMounted:()=>peakMountedVideos,
     async flushTimers(ms){for(const [id,timer] of [...timers]){if(timer.ms===ms){timers.delete(id);timer.fn();}}await settle();},
     async frame(ms=1000/60){await advance(ms);const pending=[...callbacks.values()];callbacks.clear();for(const callback of pending)callback(time);await settle();},
-    async navigate(frame){api.moveEmbed(timeline.progressAtFrame(frame,timeline.buildScrollMap(manifest,config.scrollWeights))*geometry.smallHeight*(config.scrollHeight-1)-api.getOffset());api.render();await settle();},
+    async navigate(frame){const top=timeline.progressAtFrame(frame,timeline.buildScrollMap(manifest,config.scrollWeights))*geometry.smallHeight*(config.scrollHeight-1);if(playerKind==='native'){sandbox.scrollTo({top});windowEvents.dispatchEvent(new Event('scroll'));}else api.moveEmbed(top-api.getOffset());api.render();await settle();},
     async dispose(){windowEvents.dispatchEvent(new Event('pagehide'));await settle();},
   };
 }
