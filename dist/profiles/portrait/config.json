@@ -1,0 +1,129 @@
+{
+  "id": "ascent-premium",
+  "build": "20261013-premium-review2",
+  "profile": "portrait",
+  "desktopManifest": "./profiles/portrait/manifest.json?v=20261013-premium-review2",
+  "mobileManifest": null,
+  "scrollHeight": 16.5,
+  "scrollWeights": {
+    "enter": 1,
+    "read": 2.4,
+    "exit": 1,
+    "scenes": [
+      1.45,
+      1.1,
+      1.1,
+      1.1,
+      1,
+      1.4
+    ],
+    "frameWeighted": true
+  },
+  "maxVideoBytes": 33554432,
+  "sequenceFallback": false,
+  "finalApply": true,
+  "sky": "#1467c6",
+  "sceneSkies": [
+    "#1467c6",
+    "#1467c6",
+    "#1467c6",
+    "#1467c6",
+    "#1467c6",
+    "#1467c6"
+  ],
+  "logos": {
+    "keiki": "./assets/logo-keiki.png",
+    "maritime": "./assets/logo-maritime.png"
+  },
+  "uiTimeline": {
+    "version": 1,
+    "basis": "Independently audited native source-frame maps; separate cues per actual aspect",
+    "beats": [
+      {
+        "id": "cover",
+        "headline": "The First 1,000",
+        "startFrame": 0,
+        "endFrame": 42,
+        "captionStartFrame": 0,
+        "readStartFrame": 0,
+        "readEndFrame": 30,
+        "captionEndFrame": 36,
+        "tone": "light",
+        "holdAtEnd": false,
+        "reviewNote": "Opening sky; early logos only."
+      },
+      {
+        "id": "personal",
+        "headline": "Personal.",
+        "startFrame": 42,
+        "endFrame": 168,
+        "captionStartFrame": 48,
+        "readStartFrame": 60,
+        "readEndFrame": 138,
+        "captionEndFrame": 150,
+        "tone": "light",
+        "holdAtEnd": false,
+        "reviewNote": "Separate first house remains intact while passing left; text in upper sky."
+      },
+      {
+        "id": "business",
+        "headline": "Business.",
+        "startFrame": 168,
+        "endFrame": 384,
+        "captionStartFrame": 180,
+        "readStartFrame": 192,
+        "readEndFrame": 270,
+        "captionEndFrame": 282,
+        "tone": "light",
+        "holdAtEnd": false,
+        "reviewNote": "Second building fully revealed; end before room transit. Keep text in upper sky."
+      },
+      {
+        "id": "thousand-users",
+        "headline": "1,000 users.",
+        "startFrame": 384,
+        "endFrame": 676,
+        "captionStartFrame": 532,
+        "readStartFrame": 548,
+        "readEndFrame": 638,
+        "captionEndFrame": 650,
+        "tone": "light",
+        "holdAtEnd": false,
+        "reviewNote": "After near-pillar exit, community remains visible through first part of S4; clear upper sky."
+      },
+      {
+        "id": "six-weeks",
+        "headline": "6 weeks.",
+        "startFrame": 676,
+        "endFrame": 888,
+        "captionStartFrame": 708,
+        "readStartFrame": 724,
+        "readEndFrame": 864,
+        "captionEndFrame": 876,
+        "tone": "light",
+        "holdAtEnd": false,
+        "reviewNote": "Discrete uphill landmarks occupy lower right. Upper sky stays clear. Remove caption before SF reveal completes."
+      },
+      {
+        "id": "san-francisco",
+        "headline": "3 days in San Francisco.",
+        "startFrame": 888,
+        "endFrame": 961,
+        "captionStartFrame": 900,
+        "readStartFrame": 912,
+        "readEndFrame": 960,
+        "captionEndFrame": 961,
+        "tone": "light",
+        "holdAtEnd": true,
+        "reviewNote": "Bridge/bay visible below clean upper sky; preserve final CTA state. Short native core should receive suitable scroll reading weight."
+      }
+    ]
+  },
+  "experiment": {
+    "model": "Kling 3.0 \u00b7 1080p",
+    "settings": "Five native endpoint-fed segments; separate landscape and portrait films. No editorial blends or still-filled slots.",
+    "credits": null,
+    "versionLinks": []
+  },
+  "publicPreview": false
+}

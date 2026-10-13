@@ -1,0 +1,438 @@
+{
+  "schemaVersion": 1,
+  "fps": 24,
+  "totalFrames": 961,
+  "chunkFrames": 72,
+  "maxChunkFrames": 72,
+  "variableChunkFrames": true,
+  "chunkBoundaries": [
+    0,
+    24,
+    72,
+    144,
+    216,
+    288,
+    360,
+    432,
+    504,
+    576,
+    648,
+    720,
+    792,
+    864,
+    936,
+    961
+  ],
+  "chunkFrameCounts": [
+    24,
+    48,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    25
+  ],
+  "frameRangeConvention": "start inclusive, end exclusive",
+  "profile": "portrait",
+  "completeRoute": true,
+  "source": {
+    "sha256": "cb603dd247f8307198e907b1eb43884b0ed3ff2bd6abad94b3291d15552251dd",
+    "retainedOutsidePublicPackage": true
+  },
+  "renditions": {
+    "mobile": {
+      "width": 540,
+      "height": 958,
+      "profile": "portrait",
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "gopFrames": 6,
+      "hasBFrames": false,
+      "aggregateBytes": 4775333,
+      "chunkBytes": {
+        "min": 169177,
+        "max": 347610,
+        "median": 339152
+      },
+      "chunks": [
+        {
+          "index": 0,
+          "startFrame": 0,
+          "endFrame": 24,
+          "frameCount": 24,
+          "src": "chunks/mobile-000.mp4?v=20261013-premium-review2",
+          "bytes": 169177,
+          "sha256": "1e432a532eade134479585a77afad30b23927759d11119a300db6c36158bde6b"
+        },
+        {
+          "index": 1,
+          "startFrame": 24,
+          "endFrame": 72,
+          "frameCount": 48,
+          "src": "chunks/mobile-001.mp4?v=20261013-premium-review2",
+          "bytes": 240572,
+          "sha256": "5565b4cec9434074d45c53cd317a9451821cec2d6211595d13394ca75bbcd7b5"
+        },
+        {
+          "index": 2,
+          "startFrame": 72,
+          "endFrame": 144,
+          "frameCount": 72,
+          "src": "chunks/mobile-002.mp4?v=20261013-premium-review2",
+          "bytes": 330671,
+          "sha256": "5c7e9579c756a06189f443524c7568eebd487c15002c5e14e9a57b559de528a2"
+        },
+        {
+          "index": 3,
+          "startFrame": 144,
+          "endFrame": 216,
+          "frameCount": 72,
+          "src": "chunks/mobile-003.mp4?v=20261013-premium-review2",
+          "bytes": 343187,
+          "sha256": "ce0a3d12e8de8134c20e6f49fde29d536064c7bcb5b60c122209b80e2839a312"
+        },
+        {
+          "index": 4,
+          "startFrame": 216,
+          "endFrame": 288,
+          "frameCount": 72,
+          "src": "chunks/mobile-004.mp4?v=20261013-premium-review2",
+          "bytes": 339152,
+          "sha256": "42da264c8e7a997d1c58b487ee43f5fe9b711ddd692e1c784ada2166a821122e"
+        },
+        {
+          "index": 5,
+          "startFrame": 288,
+          "endFrame": 360,
+          "frameCount": 72,
+          "src": "chunks/mobile-005.mp4?v=20261013-premium-review2",
+          "bytes": 323975,
+          "sha256": "86c1a7915db691ac684ed3d95e2ed23390d753626b800869b6fea13f55f5c523"
+        },
+        {
+          "index": 6,
+          "startFrame": 360,
+          "endFrame": 432,
+          "frameCount": 72,
+          "src": "chunks/mobile-006.mp4?v=20261013-premium-review2",
+          "bytes": 346421,
+          "sha256": "2b89d1b828d0effbb188bdaca3ec4d7bb1d6d71b3d20f2bf62232e8692252338"
+        },
+        {
+          "index": 7,
+          "startFrame": 432,
+          "endFrame": 504,
+          "frameCount": 72,
+          "src": "chunks/mobile-007.mp4?v=20261013-premium-review2",
+          "bytes": 339604,
+          "sha256": "232749d0242c2f968c7a67ba8afb8130952b3420a17d087224ad132f6879325a"
+        },
+        {
+          "index": 8,
+          "startFrame": 504,
+          "endFrame": 576,
+          "frameCount": 72,
+          "src": "chunks/mobile-008.mp4?v=20261013-premium-review2",
+          "bytes": 346142,
+          "sha256": "8d89e40749f44853fd04f8d4970367ef4f8b8b42507c20735562405b38710b85"
+        },
+        {
+          "index": 9,
+          "startFrame": 576,
+          "endFrame": 648,
+          "frameCount": 72,
+          "src": "chunks/mobile-009.mp4?v=20261013-premium-review2",
+          "bytes": 326525,
+          "sha256": "54d2162ec6a282cb22db296f2d290c4e77f18b3689824608949fa9801b75a8a5"
+        },
+        {
+          "index": 10,
+          "startFrame": 648,
+          "endFrame": 720,
+          "frameCount": 72,
+          "src": "chunks/mobile-010.mp4?v=20261013-premium-review2",
+          "bytes": 341663,
+          "sha256": "b62cd218407fa1e275e6663905dd3974a6c02e80a532aad3af7f458c18c9e75d"
+        },
+        {
+          "index": 11,
+          "startFrame": 720,
+          "endFrame": 792,
+          "frameCount": 72,
+          "src": "chunks/mobile-011.mp4?v=20261013-premium-review2",
+          "bytes": 347610,
+          "sha256": "3816e7c2991546ceb9ca697072e7a2188821490af19aee4d8a7dc16701adeae5"
+        },
+        {
+          "index": 12,
+          "startFrame": 792,
+          "endFrame": 864,
+          "frameCount": 72,
+          "src": "chunks/mobile-012.mp4?v=20261013-premium-review2",
+          "bytes": 330122,
+          "sha256": "121d4169820c8c08798a687b26d57b0272f54620b8eaf45cf34e463b586463ba"
+        },
+        {
+          "index": 13,
+          "startFrame": 864,
+          "endFrame": 936,
+          "frameCount": 72,
+          "src": "chunks/mobile-013.mp4?v=20261013-premium-review2",
+          "bytes": 343869,
+          "sha256": "eeb193fd7b0cbc44215ec449a1ef0c324b610f6e1cc2dc01c3f8cc5b179f84b8"
+        },
+        {
+          "index": 14,
+          "startFrame": 936,
+          "endFrame": 961,
+          "frameCount": 25,
+          "src": "chunks/mobile-014.mp4?v=20261013-premium-review2",
+          "bytes": 306643,
+          "sha256": "dd43c6512520c0a64741b3d01b01dc8ef3b4022bc2de96bc9b4c5f5e2afbe10b",
+          "encoding": {
+            "crf": 28,
+            "maxrate": null,
+            "bufsize": null,
+            "vbv": false,
+            "preset": "slow",
+            "gopFrames": 6,
+            "hasBFrames": false
+          }
+        }
+      ],
+      "encoding": {
+        "crf": 28,
+        "maxrate": "900k",
+        "bufsize": "900k",
+        "terminalChunkOverride": {
+          "chunkIndex": 14,
+          "startFrame": 936,
+          "endFrame": 961,
+          "frameCount": 25,
+          "crf": 28,
+          "maxrate": null,
+          "bufsize": null,
+          "vbv": false,
+          "preset": "slow",
+          "gopFrames": 6,
+          "hasBFrames": false,
+          "reason": "Avoid terminal singleton I-frame quality collapse under VBV; source frames unchanged."
+        },
+        "mode": "Original capped chunks 0\u201313; independently encoded CRF-only final chunk 14"
+      }
+    },
+    "desktop": {
+      "width": 540,
+      "height": 958,
+      "profile": "portrait",
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "gopFrames": 6,
+      "hasBFrames": false,
+      "aggregateBytes": 4775333,
+      "chunkBytes": {
+        "min": 169177,
+        "max": 347610,
+        "median": 339152
+      },
+      "chunks": [
+        {
+          "index": 0,
+          "startFrame": 0,
+          "endFrame": 24,
+          "frameCount": 24,
+          "src": "chunks/mobile-000.mp4?v=20261013-premium-review2",
+          "bytes": 169177,
+          "sha256": "1e432a532eade134479585a77afad30b23927759d11119a300db6c36158bde6b"
+        },
+        {
+          "index": 1,
+          "startFrame": 24,
+          "endFrame": 72,
+          "frameCount": 48,
+          "src": "chunks/mobile-001.mp4?v=20261013-premium-review2",
+          "bytes": 240572,
+          "sha256": "5565b4cec9434074d45c53cd317a9451821cec2d6211595d13394ca75bbcd7b5"
+        },
+        {
+          "index": 2,
+          "startFrame": 72,
+          "endFrame": 144,
+          "frameCount": 72,
+          "src": "chunks/mobile-002.mp4?v=20261013-premium-review2",
+          "bytes": 330671,
+          "sha256": "5c7e9579c756a06189f443524c7568eebd487c15002c5e14e9a57b559de528a2"
+        },
+        {
+          "index": 3,
+          "startFrame": 144,
+          "endFrame": 216,
+          "frameCount": 72,
+          "src": "chunks/mobile-003.mp4?v=20261013-premium-review2",
+          "bytes": 343187,
+          "sha256": "ce0a3d12e8de8134c20e6f49fde29d536064c7bcb5b60c122209b80e2839a312"
+        },
+        {
+          "index": 4,
+          "startFrame": 216,
+          "endFrame": 288,
+          "frameCount": 72,
+          "src": "chunks/mobile-004.mp4?v=20261013-premium-review2",
+          "bytes": 339152,
+          "sha256": "42da264c8e7a997d1c58b487ee43f5fe9b711ddd692e1c784ada2166a821122e"
+        },
+        {
+          "index": 5,
+          "startFrame": 288,
+          "endFrame": 360,
+          "frameCount": 72,
+          "src": "chunks/mobile-005.mp4?v=20261013-premium-review2",
+          "bytes": 323975,
+          "sha256": "86c1a7915db691ac684ed3d95e2ed23390d753626b800869b6fea13f55f5c523"
+        },
+        {
+          "index": 6,
+          "startFrame": 360,
+          "endFrame": 432,
+          "frameCount": 72,
+          "src": "chunks/mobile-006.mp4?v=20261013-premium-review2",
+          "bytes": 346421,
+          "sha256": "2b89d1b828d0effbb188bdaca3ec4d7bb1d6d71b3d20f2bf62232e8692252338"
+        },
+        {
+          "index": 7,
+          "startFrame": 432,
+          "endFrame": 504,
+          "frameCount": 72,
+          "src": "chunks/mobile-007.mp4?v=20261013-premium-review2",
+          "bytes": 339604,
+          "sha256": "232749d0242c2f968c7a67ba8afb8130952b3420a17d087224ad132f6879325a"
+        },
+        {
+          "index": 8,
+          "startFrame": 504,
+          "endFrame": 576,
+          "frameCount": 72,
+          "src": "chunks/mobile-008.mp4?v=20261013-premium-review2",
+          "bytes": 346142,
+          "sha256": "8d89e40749f44853fd04f8d4970367ef4f8b8b42507c20735562405b38710b85"
+        },
+        {
+          "index": 9,
+          "startFrame": 576,
+          "endFrame": 648,
+          "frameCount": 72,
+          "src": "chunks/mobile-009.mp4?v=20261013-premium-review2",
+          "bytes": 326525,
+          "sha256": "54d2162ec6a282cb22db296f2d290c4e77f18b3689824608949fa9801b75a8a5"
+        },
+        {
+          "index": 10,
+          "startFrame": 648,
+          "endFrame": 720,
+          "frameCount": 72,
+          "src": "chunks/mobile-010.mp4?v=20261013-premium-review2",
+          "bytes": 341663,
+          "sha256": "b62cd218407fa1e275e6663905dd3974a6c02e80a532aad3af7f458c18c9e75d"
+        },
+        {
+          "index": 11,
+          "startFrame": 720,
+          "endFrame": 792,
+          "frameCount": 72,
+          "src": "chunks/mobile-011.mp4?v=20261013-premium-review2",
+          "bytes": 347610,
+          "sha256": "3816e7c2991546ceb9ca697072e7a2188821490af19aee4d8a7dc16701adeae5"
+        },
+        {
+          "index": 12,
+          "startFrame": 792,
+          "endFrame": 864,
+          "frameCount": 72,
+          "src": "chunks/mobile-012.mp4?v=20261013-premium-review2",
+          "bytes": 330122,
+          "sha256": "121d4169820c8c08798a687b26d57b0272f54620b8eaf45cf34e463b586463ba"
+        },
+        {
+          "index": 13,
+          "startFrame": 864,
+          "endFrame": 936,
+          "frameCount": 72,
+          "src": "chunks/mobile-013.mp4?v=20261013-premium-review2",
+          "bytes": 343869,
+          "sha256": "eeb193fd7b0cbc44215ec449a1ef0c324b610f6e1cc2dc01c3f8cc5b179f84b8"
+        },
+        {
+          "index": 14,
+          "startFrame": 936,
+          "endFrame": 961,
+          "frameCount": 25,
+          "src": "chunks/mobile-014.mp4?v=20261013-premium-review2",
+          "bytes": 306643,
+          "sha256": "dd43c6512520c0a64741b3d01b01dc8ef3b4022bc2de96bc9b4c5f5e2afbe10b",
+          "encoding": {
+            "crf": 28,
+            "maxrate": null,
+            "bufsize": null,
+            "vbv": false,
+            "preset": "slow",
+            "gopFrames": 6,
+            "hasBFrames": false
+          }
+        }
+      ],
+      "encoding": {
+        "crf": 28,
+        "maxrate": "900k",
+        "bufsize": "900k",
+        "terminalChunkOverride": {
+          "chunkIndex": 14,
+          "startFrame": 936,
+          "endFrame": 961,
+          "frameCount": 25,
+          "crf": 28,
+          "maxrate": null,
+          "bufsize": null,
+          "vbv": false,
+          "preset": "slow",
+          "gopFrames": 6,
+          "hasBFrames": false,
+          "reason": "Avoid terminal singleton I-frame quality collapse under VBV; source frames unchanged."
+        },
+        "mode": "Original capped chunks 0\u201313; independently encoded CRF-only final chunk 14"
+      },
+      "description": "Same trueportrait540x958 media; no duplicate download assets."
+    }
+  },
+  "cacheVersion": "20261013-premium-review2",
+  "poster": {
+    "src": "poster.webp?v=20261013-premium-review2",
+    "width": 540,
+    "height": 958,
+    "sourceFrame": 0,
+    "bytes": 83252,
+    "sha256": "64411a764d14c6903d13ab05acf307b8c3f5d87964709b9d3e10411761006fa5"
+  },
+  "deliveryRefinement": {
+    "id": "20261013-premium-delivery-refinement1",
+    "baseRelease": "release-candidate1",
+    "changedFrameRange": [
+      936,
+      961
+    ],
+    "changedChunkIndices": [
+      14
+    ],
+    "nativeMasterUnchanged": true,
+    "visualInspection": "All 25 terminal frames inspected in every unique rendition; no endpoint collapse observed."
+  },
+  "build": "20261013-premium-review2"
+}

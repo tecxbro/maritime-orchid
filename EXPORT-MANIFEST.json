@@ -1,0 +1,638 @@
+{
+  "scope": "Premium X player only",
+  "sourceCommit": "e5efa016e857a25004cd0bee825558fd7b9c1b45",
+  "fileCountExcludingManifest": 126,
+  "totalBytesExcludingManifest": 62921309,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3620,
+      "sha256": "bb010c5f453fd1143e69dbcbb71a8c294f0154919f491612fce23ff9cbcfb6a6"
+    },
+    {
+      "path": "backend/Code.gs",
+      "bytes": 4072,
+      "sha256": "18f3636ec6d562f3c6412efa19febb90040ca9f08a87dde7fa162d3e76c6c1da"
+    },
+    {
+      "path": "dist/assets/card-preview.png",
+      "bytes": 491457,
+      "sha256": "ac882927752e2c133ad4f9ebe8d86ad0db620533ef02a64cd0a129927f94872d"
+    },
+    {
+      "path": "dist/assets/logo-keiki.png",
+      "bytes": 68987,
+      "sha256": "7d8b7bfee7402df36276f71ca470bf363fef8b5e0db73c56679720920930fbb0"
+    },
+    {
+      "path": "dist/assets/logo-maritime.png",
+      "bytes": 31619,
+      "sha256": "7920fb818dabcdc695057de4aeee2295128d1b5f82d973d5463f067f56934ee0"
+    },
+    {
+      "path": "dist/config.json",
+      "bytes": 105345,
+      "sha256": "654633c22413ace54379301b8815edaea75d672790d50862e6f53aacd8aeaf3a"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-000.js",
+      "bytes": 609491,
+      "sha256": "abdbadee18f61adc7a025dd5d6f21bb11902fe45ad570ad9c3460a903746b800"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-001.js",
+      "bytes": 955591,
+      "sha256": "fb3817162fe9b1c9541a19d48f6ed5d8fa4c742472331da9ea42e3bcb2dda7c8"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-002.js",
+      "bytes": 1290283,
+      "sha256": "58c51e37839433474c634ec816ffd10957ceb2334e3b882a7e55548eea9b940f"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-003.js",
+      "bytes": 1298403,
+      "sha256": "147e27f5007cd28e6d6830ebe7320c4f2412ec877fafba85ae07f121f248bb4e"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-004.js",
+      "bytes": 1328515,
+      "sha256": "7128d7761710db978f7737e6cd4a9127f3d32ae694507c52c1b8b03848120949"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-005.js",
+      "bytes": 1207279,
+      "sha256": "c358c028454b81777efaf40ffe6f970c826530337b954f463df420ca72b11f2f"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-006.js",
+      "bytes": 1368667,
+      "sha256": "2f765483b269a42adea6ecad5e98368dc7e0456135e04e919e6246e45947d6fb"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-007.js",
+      "bytes": 1235323,
+      "sha256": "f6751a4d4448b8f0b19c4e64ba37bda871b8a34b81d161218aa04c56a12e48a2"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-008.js",
+      "bytes": 1382099,
+      "sha256": "174e766628456247e67d8c835148773dfacd2ebe8d787010de698639999bd6c3"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-009.js",
+      "bytes": 1205567,
+      "sha256": "7ba0504aecef70000e4831d8a47181013e859b665e46a007e31c21148f542c54"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-010.js",
+      "bytes": 1361247,
+      "sha256": "cc545bde85aeb4cbe31966c515315c466c5a4caaa85fe7c30ab096d978546c4c"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-011.js",
+      "bytes": 1341235,
+      "sha256": "6960d0bb198f1b2a8998173c6b31383b16ce11d192817a1021191df75985eba9"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-012.js",
+      "bytes": 1273435,
+      "sha256": "aa872054e5e9c334382c8f64e0073bd8b460a660500e37726d0e809c3ed9412c"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-013.js",
+      "bytes": 1311143,
+      "sha256": "c10c846f8ba2d1383da0a0cf305d3ce15927d1d9f3d5fed046d7b0f9db851712"
+    },
+    {
+      "path": "dist/embed-media/landscape/desktop-014.js",
+      "bytes": 1663927,
+      "sha256": "59c6beb8ee824f4ed44023cdf7d7ce51aa6a8a7f51d61a09f3a90b04222d80b1"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-000.js",
+      "bytes": 316150,
+      "sha256": "d39fb69102fe54d2be7305180d8baab6d38890ff7a9fbf6c60ac036e85075768"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-001.js",
+      "bytes": 525502,
+      "sha256": "1a1523149bc0c6bd5dc397a32e53b05f50aabfa4abf6b982f7388a88a0e77c92"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-002.js",
+      "bytes": 700202,
+      "sha256": "2bd259b3ae8226efa709bcb34cc1dc42b8c56422c7b0e421411c132383c36210"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-003.js",
+      "bytes": 698398,
+      "sha256": "453e128d194f325ab5d6b2413623bea345088f3c71458366bbdb63fcd7f6144e"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-004.js",
+      "bytes": 711558,
+      "sha256": "a728ade6038f7c65e7a40c34f963f416166772df41cbf1eb343645301ded2c5f"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-005.js",
+      "bytes": 637450,
+      "sha256": "5de69bc3442c9c79556a634acaa19a4979a48d848128e77b0ab97b8477b0eaa5"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-006.js",
+      "bytes": 714170,
+      "sha256": "3c3e59c3f2ee8cc6351e4b3dbd1bc5f33ad64a6dd52ae54cbb8c9ecb94955ee0"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-007.js",
+      "bytes": 681206,
+      "sha256": "85033802b990c7dafb2cbd28b5d0747ae1e3757473d0e924a04231b88c9933b5"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-008.js",
+      "bytes": 775874,
+      "sha256": "a60cba002b13da136272ff4bcd93c9ec0fd087d45948ca005831fe05ee48c5ed"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-009.js",
+      "bytes": 642906,
+      "sha256": "00477efb9333474e9773f9615d268ba9aca18ffe497cb97d3051783ee7e6d314"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-010.js",
+      "bytes": 745374,
+      "sha256": "6c20ba7282919e0d510c1a90471b0df05aeffcabba0522a101cd1b1e75628a3f"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-011.js",
+      "bytes": 708662,
+      "sha256": "0becd5c26f9d5502b2b7ef07c93ec48a5f3792cfd43adb27ffcab428572c04fd"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-012.js",
+      "bytes": 700390,
+      "sha256": "bec7d5d56b346a588ee8730aa93967acc43f437a5564400d287104940986b420"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-013.js",
+      "bytes": 704494,
+      "sha256": "9a02c7b7d407c32d6d2ae82ea1e91f3a2dc7e5fb5a18e4f413a5da59670f1d32"
+    },
+    {
+      "path": "dist/embed-media/landscape/mobile-014.js",
+      "bytes": 465446,
+      "sha256": "62ad93410bd339a1261769177f690d1b3a55149763fc90be557e73347470ec90"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-000.js",
+      "bytes": 225685,
+      "sha256": "52362c05bcf5ff740c5ef220035cde544929dd92c5296b7d6593730507b1b6d3"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-001.js",
+      "bytes": 320877,
+      "sha256": "570abb26ef280025e370db9a71057f7716f3d0d264940c33e3550996fd2352c5"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-002.js",
+      "bytes": 441009,
+      "sha256": "1c731229d098dda35ad995225dc5ac0d7e5fc1ed2d857cfc97f5598b8562d563"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-003.js",
+      "bytes": 457697,
+      "sha256": "d900cdafcd5ad7a8397fac81f28bf73cc92b3b0af2f577aa0f4d060094d08683"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-004.js",
+      "bytes": 452317,
+      "sha256": "dc50f27621ce34dee247dfb2197a8de463b0ad0e099cfcc83b5aeff97e8c226d"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-005.js",
+      "bytes": 432081,
+      "sha256": "ead1b338120c32d9d08cb5e7694a6804f81a96860c2b6f24fb04759d2a62cc89"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-006.js",
+      "bytes": 462009,
+      "sha256": "30c90aa6c8a26859ff0312d6209312f52713b4a590d4424fdeaced1c2f2c3955"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-007.js",
+      "bytes": 452921,
+      "sha256": "01256b680104bc66b2088cee717723a52faea6841c8440a2f540d76aa17a8c75"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-008.js",
+      "bytes": 461637,
+      "sha256": "ea2ffd4f6af21232eaf313e37121cb997f1cf6c918b7e75fd891fd2d410d97df"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-009.js",
+      "bytes": 435481,
+      "sha256": "d186023fb073940a4504a36566094978b79d18a5c612ee5db1dae273d5d5e673"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-010.js",
+      "bytes": 455665,
+      "sha256": "f0e6d8af7573250e8958f87eae2e204f9eb80b788c72d75a092219b0a6da33cc"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-011.js",
+      "bytes": 463593,
+      "sha256": "23c6d83d447d4a4a192b1fb2bd59b7af0ef66b3292c9378a43ea25c1d4b50747"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-012.js",
+      "bytes": 440277,
+      "sha256": "f505d92d5ccfa6d04fd99f9bc52bfe926a913810a9659cb05e8e3a375fb2c526"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-013.js",
+      "bytes": 458605,
+      "sha256": "55f667d6ea046e70c1a1b555978ecde677732245a0b1ac0214b12221bd8d57d8"
+    },
+    {
+      "path": "dist/embed-media/portrait/mobile-014.js",
+      "bytes": 408973,
+      "sha256": "5821c6e95f93dc653fa551ada2d448c41d64f9cdf520cc22303f8e35bf82687a"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 61155,
+      "sha256": "c7022aa6758a8d1e7681bec20acf636d6254d7a68009f2e8e696cf3e9b9e0e6b"
+    },
+    {
+      "path": "dist/media/card-preview.png",
+      "bytes": 491457,
+      "sha256": "ac882927752e2c133ad4f9ebe8d86ad0db620533ef02a64cd0a129927f94872d"
+    },
+    {
+      "path": "dist/player/index.html",
+      "bytes": 61170,
+      "sha256": "3f29ba6c2da9af0a8a8c53563dda513fcb9878bf911f209d5dec4320602b7835"
+    },
+    {
+      "path": "dist/player.html",
+      "bytes": 61155,
+      "sha256": "c7022aa6758a8d1e7681bec20acf636d6254d7a68009f2e8e696cf3e9b9e0e6b"
+    },
+    {
+      "path": "dist/profiles/landscape/chunk-index.json",
+      "bytes": 13229,
+      "sha256": "ee1cec8f98bb98b07481c0d8f74c44a6bbedea7eaf82be109b4bdedecc0e1a48"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-000.mp4",
+      "bytes": 457032,
+      "sha256": "e50af64c5b89c0de618356a602383418957d05b8b5145655389e40bb3716607d"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-001.mp4",
+      "bytes": 716605,
+      "sha256": "8977911cb96046ac5ccf61d684816189a079a68a4411bb1de7f032ab26da528a"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-002.mp4",
+      "bytes": 967624,
+      "sha256": "83b436a2fff0a4ae6c21a2af02a856660983eaa51536864136e1e24926bf468d"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-003.mp4",
+      "bytes": 973715,
+      "sha256": "e3a9429da803fbeb64274a26c6dc9a621b74d38bc659a0d30f8d9585a4568f76"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-004.mp4",
+      "bytes": 996298,
+      "sha256": "44a2ef3e129df44300c8301aa241d34a86115162983a3e16ce447a5789563407"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-005.mp4",
+      "bytes": 905371,
+      "sha256": "3c5ca881a41472a87b7cc649b792b41d3b2f7469e53ebf2d706faa64dd94da72"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-006.mp4",
+      "bytes": 1026414,
+      "sha256": "589f7c02856ff30236797a6fabe6e62b3314a1aaad83769acc87c6effe6ae8dc"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-007.mp4",
+      "bytes": 926405,
+      "sha256": "92e6641d9dd0132793bc7e4c512870cb3182a9d60545a30d04041760e548f678"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-008.mp4",
+      "bytes": 1036486,
+      "sha256": "da470cba6f98bdea48fc3c3171aec6a234256adec259b64316e840d92646082e"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-009.mp4",
+      "bytes": 904089,
+      "sha256": "2069b467d7f035ecff31b6be1015abad65d1323ab8f643fe248f6c15c8a2ddcb"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-010.mp4",
+      "bytes": 1020847,
+      "sha256": "266ef672eec91f0e8de8fd929fb1ae9afb8adb0db5d2ca743d31dab2be990147"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-011.mp4",
+      "bytes": 1005839,
+      "sha256": "ca128fe4ad6087799e00ea9fdc0496a6f81a75cd15e0278e82d0f9c142a9ff6a"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-012.mp4",
+      "bytes": 954989,
+      "sha256": "8a9902ef2689d8e42cb3b6d790b0ce6a7d5f732e33abe8c2994ca49704a88d20"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-013.mp4",
+      "bytes": 983269,
+      "sha256": "f32fb45f1c8026e2820b6a811f408e5e08b5e52d7b3d73e3d7a337af27b4ae84"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/desktop-014.mp4",
+      "bytes": 1247858,
+      "sha256": "a577a8c29026d8ef9d99961e698bed8a1bbbcf10cb8e7ae337c12047e1c2b69b"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-000.mp4",
+      "bytes": 237026,
+      "sha256": "79f9651e7ce9e6d2d9a9cc3137517bdfb0b280eca0378b071125d2f930095220"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-001.mp4",
+      "bytes": 394040,
+      "sha256": "42396e92823a80b5c3575e3392912af7c38c95fc54aa645772fb2ff59a3efb47"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-002.mp4",
+      "bytes": 525065,
+      "sha256": "e4a10aca5936219652eca72c0e6426a44b93c48f598507b9dc77672e260ed931"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-003.mp4",
+      "bytes": 523712,
+      "sha256": "de340addc4aa472ad0f3da219b86f74aaac6426a9750202a74a1a316fdc36302"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-004.mp4",
+      "bytes": 533583,
+      "sha256": "03553021e7549016b491eacbb0054047628b178c0aed6cb777a9710454b6816d"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-005.mp4",
+      "bytes": 478002,
+      "sha256": "933559deecbea13a6b835231e62fc4465e86ad13218d0f413094dc57ed2d2537"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-006.mp4",
+      "bytes": 535542,
+      "sha256": "60c62214e8d1bcff2700b01998e79af043e1e6c10620e99e8de98a6917733ae0"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-007.mp4",
+      "bytes": 510819,
+      "sha256": "d6d10a876522be0ea5523e3c8e108da92665ac940cad50cb474fc3dd20e0f6c8"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-008.mp4",
+      "bytes": 581820,
+      "sha256": "1113a162ff8e0f2fc9c568d93e4e94e3eed36a0b16606ae7c671df16dfe8ba7e"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-009.mp4",
+      "bytes": 482092,
+      "sha256": "1aa79845d278435fc2bc973a936d2e7d5cae57d4edb307d2fafff141d4df431f"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-010.mp4",
+      "bytes": 558945,
+      "sha256": "4e966b740a89b8d5148471f179b2a676bc1d7138e9847baf35799573a7c269d6"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-011.mp4",
+      "bytes": 531409,
+      "sha256": "c904db345cbf5bced4a28e6ada376a5295dd05f029f5d894e70df6abf5576c8e"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-012.mp4",
+      "bytes": 525206,
+      "sha256": "e004349062c9daf5ead225d613dafc5fc1e4c93e22111f50af026a91600cc0cc"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-013.mp4",
+      "bytes": 528285,
+      "sha256": "413cca32c0921f9ef3c4654d5da303032534b2eb0b75f80aae3744046a558e59"
+    },
+    {
+      "path": "dist/profiles/landscape/chunks/mobile-014.mp4",
+      "bytes": 348997,
+      "sha256": "105ba0b302b8bf9f499235e235707c8ac4a9d8432ce9c504a76f733e05cc1ec6"
+    },
+    {
+      "path": "dist/profiles/landscape/config.json",
+      "bytes": 3713,
+      "sha256": "0c3b68ee65b189b0dc13fb3c7b1d422bc0fd2bf7ec8a27aec6f6a7801725e527"
+    },
+    {
+      "path": "dist/profiles/landscape/manifest.json",
+      "bytes": 24574,
+      "sha256": "04c5513ae0ac8d251997d07494c835433c273db1809201472f3bfba5ab42a2e7"
+    },
+    {
+      "path": "dist/profiles/landscape/poster.webp",
+      "bytes": 63862,
+      "sha256": "3a67695826ba605f752735e5e9f8fda4b4b5da4224b373b25a72b87f6cb5e7a9"
+    },
+    {
+      "path": "dist/profiles/portrait/chunk-index.json",
+      "bytes": 13284,
+      "sha256": "7cff259b94979f6e06a0c09d62aaa45cfc374ac23b7c79f5c2da4b09a9c8488c"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-000.mp4",
+      "bytes": 169177,
+      "sha256": "1e432a532eade134479585a77afad30b23927759d11119a300db6c36158bde6b"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-001.mp4",
+      "bytes": 240572,
+      "sha256": "5565b4cec9434074d45c53cd317a9451821cec2d6211595d13394ca75bbcd7b5"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-002.mp4",
+      "bytes": 330671,
+      "sha256": "5c7e9579c756a06189f443524c7568eebd487c15002c5e14e9a57b559de528a2"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-003.mp4",
+      "bytes": 343187,
+      "sha256": "ce0a3d12e8de8134c20e6f49fde29d536064c7bcb5b60c122209b80e2839a312"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-004.mp4",
+      "bytes": 339152,
+      "sha256": "42da264c8e7a997d1c58b487ee43f5fe9b711ddd692e1c784ada2166a821122e"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-005.mp4",
+      "bytes": 323975,
+      "sha256": "86c1a7915db691ac684ed3d95e2ed23390d753626b800869b6fea13f55f5c523"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-006.mp4",
+      "bytes": 346421,
+      "sha256": "2b89d1b828d0effbb188bdaca3ec4d7bb1d6d71b3d20f2bf62232e8692252338"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-007.mp4",
+      "bytes": 339604,
+      "sha256": "232749d0242c2f968c7a67ba8afb8130952b3420a17d087224ad132f6879325a"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-008.mp4",
+      "bytes": 346142,
+      "sha256": "8d89e40749f44853fd04f8d4970367ef4f8b8b42507c20735562405b38710b85"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-009.mp4",
+      "bytes": 326525,
+      "sha256": "54d2162ec6a282cb22db296f2d290c4e77f18b3689824608949fa9801b75a8a5"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-010.mp4",
+      "bytes": 341663,
+      "sha256": "b62cd218407fa1e275e6663905dd3974a6c02e80a532aad3af7f458c18c9e75d"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-011.mp4",
+      "bytes": 347610,
+      "sha256": "3816e7c2991546ceb9ca697072e7a2188821490af19aee4d8a7dc16701adeae5"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-012.mp4",
+      "bytes": 330122,
+      "sha256": "121d4169820c8c08798a687b26d57b0272f54620b8eaf45cf34e463b586463ba"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-013.mp4",
+      "bytes": 343869,
+      "sha256": "eeb193fd7b0cbc44215ec449a1ef0c324b610f6e1cc2dc01c3f8cc5b179f84b8"
+    },
+    {
+      "path": "dist/profiles/portrait/chunks/mobile-014.mp4",
+      "bytes": 306643,
+      "sha256": "dd43c6512520c0a64741b3d01b01dc8ef3b4022bc2de96bc9b4c5f5e2afbe10b"
+    },
+    {
+      "path": "dist/profiles/portrait/config.json",
+      "bytes": 3685,
+      "sha256": "8c2e1867ab4bd80277f4668827e9fdaa5a016665f3c7899a50a0ab0ea224f1ea"
+    },
+    {
+      "path": "dist/profiles/portrait/manifest.json",
+      "bytes": 25218,
+      "sha256": "a0fa89224bfe622b25bc598739a342dfe508acdd981f80812588bfb6512bed0a"
+    },
+    {
+      "path": "dist/profiles/portrait/poster.webp",
+      "bytes": 83252,
+      "sha256": "64411a764d14c6903d13ab05acf307b8c3f5d87964709b9d3e10411761006fa5"
+    },
+    {
+      "path": "dist/shared/application-config.js",
+      "bytes": 264,
+      "sha256": "0d344395ff80f4fd2520f191f9019f25187f945cea2c37f912e52484b50a8497"
+    },
+    {
+      "path": "dist/shared/application.css",
+      "bytes": 8642,
+      "sha256": "33caf578b45d22f5d87e8b82d49ebe5f5010d0f353477086fa54393e0c6285eb"
+    },
+    {
+      "path": "dist/shared/application.js",
+      "bytes": 8894,
+      "sha256": "bfbd26de39a76640bf2763d60778f4c3e3241fe7020f8eb3cba107df19bff23e"
+    },
+    {
+      "path": "dist/shared/embed-runtime.js",
+      "bytes": 51675,
+      "sha256": "9fd3b21cf04e43c4e8e6c7b684aab7ac766b9cf44085dfdefd394980afa33fa9"
+    },
+    {
+      "path": "dist/shared/embed.css",
+      "bytes": 4643,
+      "sha256": "4008b616f7f954f69000b063f9036fa0e663e9b958cf2be7084bdbf755df414c"
+    },
+    {
+      "path": "dist/shared/media-lifecycle.mjs",
+      "bytes": 12484,
+      "sha256": "d6d833d7f0226000777ee3ecf11d4403da1bc1b3e85253ba0f95794a135bd931"
+    },
+    {
+      "path": "dist/shared/player.js",
+      "bytes": 25816,
+      "sha256": "9a3e3afc5bb6396d01ea4609dcecfad9cc5804212c0ac5e92e7785e05b25f709"
+    },
+    {
+      "path": "dist/shared/premium-layout.css",
+      "bytes": 4582,
+      "sha256": "520ed57eb1e3172518ed51ce1ae0ce841613abbe5c4c6d8ba47a198ac55cd47c"
+    },
+    {
+      "path": "dist/shared/profile-bootstrap.mjs",
+      "bytes": 11414,
+      "sha256": "7dcabb741d8857eff13e75d65411dffe211bacbf6fd017dc3633ac68b044b81d"
+    },
+    {
+      "path": "dist/shared/program-details.mjs",
+      "bytes": 972,
+      "sha256": "3c65684c405821a3d175111f6164133b4cc30e873c90e58713ef3b3cc67effc4"
+    },
+    {
+      "path": "dist/shared/public-links.css",
+      "bytes": 522,
+      "sha256": "09e0a59d26a0a56f907c26b9a241a3eafdd3f88e58dca82860591258033d4039"
+    },
+    {
+      "path": "dist/shared/styles.css",
+      "bytes": 11830,
+      "sha256": "aed400ae66081b49d5e018094ac9afe0adf828bfddbb0b0736508b2ea4f6bd8c"
+    },
+    {
+      "path": "dist/terms/index.html",
+      "bytes": 6592,
+      "sha256": "95b1b6a0d3129503425c4937a38632f65b53172111f26425e0e105ba9774c937"
+    },
+    {
+      "path": "dist/terms.html",
+      "bytes": 6592,
+      "sha256": "95b1b6a0d3129503425c4937a38632f65b53172111f26425e0e105ba9774c937"
+    },
+    {
+      "path": "verification/poster-markup.test.mjs",
+      "bytes": 1474,
+      "sha256": "6c1a1009fc2bda499a0f2f32d4a30fed999cbc674c9c784cd6712717ddb0523a"
+    },
+    {
+      "path": "verification/premium-card-harness.mjs",
+      "bytes": 15271,
+      "sha256": "378ffe6594c75c6b3a243766d2344fdda3a662729f555a9e045d671958a58fc9"
+    },
+    {
+      "path": "verification/premium-card.test.mjs",
+      "bytes": 5669,
+      "sha256": "a5e2086fcc4fa2189f3e90d1a97c7d3f5d1eabf1a8d9f9b4fbbdf0319ff65021"
+    },
+    {
+      "path": "verification/quiet-card-preservation.json",
+      "bytes": 11588,
+      "sha256": "86a5021186e3f448a2a989a2519e5d15e77bf3dcb290c7c7df2c9765373bbcfc"
+    }
+  ]
+}
