@@ -1,0 +1,15 @@
+# Primary competition page
+
+`/` and `/player` open the competition directly as a normal, server-delivered reading page. `/read` remains an alias. All reading entry points use absolute asset URLs. Social player metadata points to `/player` at the existing 800 × 600 dimensions.
+
+The page reuses `shared/x-player-shell.css` for the existing reading design: the house-and-grass background, actual Keiki and Maritime logo images, Georgia body and title, Arial controls, gold Apply buttons, mobile spacing, and stacked mobile dates. `read/reading.css` supplies only document defaults, native page scrolling, application scroll locking, and a keyboard skip link.
+
+The X routes additionally load `read/player.css`: the outer document stays within the card viewport, and the reading view is a fixed, viewport-sized container with its own vertical overflow, native touch scrolling, and touch momentum. This restores the internal scroller used by the original reading fallback; the standalone website still uses normal document scrolling. The scroll area can receive keyboard focus, and opening the application stops scrolling behind the dialog while the dialog keeps its own scrolling. The card's player URL is versioned `20261015-scroll28` so new cards reference the updated player. Source and stylesheet-cascade regression checks pass; actual interaction inside X has not been verified because browser control is unavailable in this session.
+
+The copy uses the approved opening about always on agents and building the next unicorn. It describes a growth competition: build a personal agent or an agent that solves a real business problem; reach 1,000 users in six weeks with full access to Keiki and Maritime. The first three qualifying projects earn up to $20,000 in LLM credits and a three-day San Francisco trip. Applications open October 13; the program starts October 20 and ends December 1, 2026, exactly 42 days later. Founder stories are omitted. Flight limitations appear in the linked terms.
+
+Apply uses the existing shared application dialog, configuration, and submission handler. The footer also offers the existing text-to-apply number, Program Terms, and a secondary video link. There are no player scripts, video elements, chapter data, or video preloads on the primary pages.
+
+The prior native video page is retained at `/video`; the prior embedded player is retained at `/video/player`. Their playback code and media are unchanged. Their HTML changes only to resolve assets/config correctly on nested routes, point video metadata to the secondary player, and synchronize the reading fallback. `verification/video-route-baseline.json` records normalized hashes against the source before migration.
+
+`scripts/reading-page.html` is the source template. `node scripts/sync-reading-pages.mjs` emits the primary HTML routes and updates `scripts/x-reading-view.html` and both secondary X-player documents. The terms now match the confirmed name, goal, dates, and access, retaining the existing flight restrictions. `/keikibrand`, shared CSS, application code, playback code, and assets remain unchanged.

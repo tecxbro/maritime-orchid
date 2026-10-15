@@ -1,0 +1,151 @@
+@font-face{font-family:'Geist Variable';font-style:normal;font-weight:100 900;font-display:swap;src:url('./assets/geist-latin.woff2') format('woff2')}
+@font-face{font-family:'Inter Variable';font-style:normal;font-weight:100 900;font-display:swap;src:url('./assets/inter-latin.woff2') format('woff2')}
+
+:root{
+  --color-kumo-brand:#0742a0;
+  --home-foreground:#142653;
+  --home-background:#fff;
+  --home-soft:#fafafa;
+  --home-muted:#43557a;
+  --home-subtle:#596a88;
+  --home-line:#ebebeb;
+  --home-highlight:#d9b75d;
+  --site-font:'Geist Variable',sans-serif;
+  --font-sans:'Inter Variable',sans-serif;
+  color-scheme:light;
+  background:var(--home-background);
+  color:var(--home-foreground);
+  font-family:var(--site-font);
+  font-synthesis:none;
+  font-optical-sizing:auto;
+  -webkit-font-smoothing:antialiased;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:0 1.5rem;font-size:1rem;line-height:1.65}
+body::before{content:'';position:fixed;inset:0;border:5px solid var(--color-kumo-brand);pointer-events:none;z-index:10}
+body:has(dialog[open]){overflow:hidden}
+::selection{background:var(--home-highlight);color:var(--home-foreground)}
+a{color:var(--color-kumo-brand);text-underline-offset:.2em}
+button,a,input,select,textarea,summary{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--color-kumo-brand);outline-offset:4px}
+button{cursor:pointer}
+[hidden]{display:none!important}
+h1,h2,p,figure,dl,dd{margin:0}
+.site-frame{max-width:90.5rem;margin:0 auto;padding:0 2.5rem}
+.site-header{position:sticky;top:0;z-index:5;min-height:7rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;border-bottom:1px solid var(--home-line);background:var(--home-background)}
+.brand-pair{display:flex;align-items:center;gap:.625rem;min-height:2.75rem;text-decoration:none;color:var(--home-foreground);flex-shrink:0}
+.keiki-logo{display:flex;align-items:center;justify-content:center;padding:.625rem}
+.keiki-logo img{display:block;width:2.75rem;height:auto}
+.brand-times{font:400 1.125rem/1 var(--site-font);color:var(--home-subtle);padding-right:.25rem}
+.maritime-logo{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:.5rem;background:#000}
+.maritime-logo img{display:block;width:1.5rem;height:auto}
+.header-actions{display:flex;align-items:center;gap:1.5rem;font:500 .875rem/1.4 var(--font-sans)}
+.header-actions>a{display:inline-flex;align-items:center;min-height:2.75rem;text-decoration:none;color:var(--home-muted)}
+.header-actions>a:hover,.footer-links a:hover{text-decoration:underline}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:2rem;padding:.375rem .875rem;border:1px solid transparent;border-radius:.75rem;background:var(--color-kumo-brand);color:#fff;font:500 .875rem/1.25rem var(--font-sans);text-decoration:none;transition:background-color 180ms ease-out}
+.button:hover,.application-submit:hover{background:#042766}
+.button-primary{min-width:8rem;min-height:2.75rem;padding:.625rem 1.5rem}
+.skip-link{position:fixed;top:-6rem;left:1.5rem;z-index:30;background:#fff;padding:.75rem 1rem}
+.skip-link:focus{top:1rem}
+main{scroll-margin-top:8.5rem}
+main:focus{outline:none}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:start;gap:clamp(2rem,6.5vw,6.5rem);padding:clamp(3.5rem,6.5vw,6rem) 0 4.5rem}
+.program-copy{padding-top:.25rem}
+h1{font-size:clamp(2rem,3.6vw,3.5rem);font-weight:600;line-height:1.12;letter-spacing:-.035em;text-wrap:balance}
+h1 span{font-weight:450}
+.introduction{max-width:29rem;margin-top:2rem;font-size:1.5rem;font-weight:450;line-height:1.45;letter-spacing:-.035em;color:var(--home-muted)}
+.introduction strong{font-weight:600;color:var(--home-foreground)}
+.reading-copy{max-width:37.5rem;margin-top:1.75rem;color:var(--home-muted);font-weight:450}
+.reading-copy p+p{margin-top:1.25rem}
+.hero-actions{margin-top:2rem}
+.hero-art img{display:block;width:100%;height:auto;aspect-ratio:1;border-radius:1rem}
+.dates{border-top:1px solid var(--home-line);padding:2.25rem 0 3.5rem;scroll-margin-top:8.5rem}
+h2{font-size:1.5rem;font-weight:600;line-height:1.4;letter-spacing:-.025em}
+.dates dl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-top:1.75rem}
+.dates dt{font-size:.875rem;color:var(--home-subtle);line-height:1.5}
+.dates dd{margin-top:.5rem;font-weight:450;font-size:1rem}
+.site-footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;border-top:1px solid var(--home-line);padding:1.5rem 0 2rem;color:var(--home-subtle);font-size:.875rem}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{display:inline-flex;align-items:center;min-height:2.75rem;text-decoration:none}
+.noscript-note{max-width:40rem;padding:1rem;margin:0 auto 2rem}
+
+/* This page reuses the working application handler, with its own brand styling. */
+.application-dialog{width:min(38.75rem,calc(100vw - 2rem));max-height:calc(100svh - 2rem);padding:0;border:1px solid var(--home-line);border-radius:1rem;background:#fff;color:var(--home-foreground);overflow:auto;overscroll-behavior:contain;font:1rem/1.65 var(--site-font)}
+.application-dialog::backdrop{background:#14265380}
+.application-shell{padding:1.75rem}
+.application-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.25rem}
+.application-eyebrow{font-size:.875rem;color:var(--home-muted)}
+.application-eyebrow span{display:none}
+.application-close{display:flex;align-items:center;justify-content:center;width:2rem;height:2rem;padding:0;border:0;border-radius:.75rem;background:var(--home-soft);color:var(--home-foreground);font:400 1.5rem/1 var(--font-sans)}
+.application-close:hover{background:var(--home-line)}
+.application-intro{margin:.5rem 0 1.5rem;color:var(--home-muted);font-size:1rem}
+.application-dialog form{display:grid;gap:1.25rem}
+.application-identity{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.application-project{display:grid;gap:1.25rem}
+.application-dialog label{display:grid;gap:.375rem;min-width:0;font:500 .875rem/1.4 var(--font-sans)}
+.application-dialog input,.application-dialog select,.application-dialog textarea{box-sizing:border-box;width:100%;min-width:0;min-height:2rem;border:1px solid var(--home-line);border-radius:.75rem;background:#fff;color:var(--home-foreground);padding:.3125rem .75rem;font:400 .875rem/1.25rem var(--font-sans);transition:border-color 180ms ease-out,box-shadow 180ms ease-out}
+.application-dialog textarea{min-height:6rem;padding:.5rem .75rem;resize:vertical}
+.application-dialog input::placeholder,.application-dialog textarea::placeholder{color:var(--home-subtle)}
+.application-dialog input:focus,.application-dialog select:focus,.application-dialog textarea:focus{border-color:#b9b9b9;box-shadow:0 0 0 2px #0000000a;outline:none}
+.application-dialog input:focus-visible,.application-dialog select:focus-visible,.application-dialog textarea:focus-visible{outline:2px solid var(--color-kumo-brand);outline-offset:2px}
+.application-field-error{font-size:.75rem;color:#982f25}
+.application-field-error:empty,.application-status:empty{display:none}
+.application-dialog [aria-invalid=true]{border-color:#982f25}
+.application-optionals{padding-top:1rem;border-top:1px solid var(--home-line)}
+.application-optionals summary{cursor:pointer;min-height:2rem;list-style-position:inside;font-size:.875rem}
+.application-optionals summary span{margin-left:.5rem;color:var(--home-subtle);font-size:.75rem}
+.application-optionals>div{display:grid;gap:1rem;padding-top:1rem}
+.application-send{display:flex;align-items:center;gap:1.25rem;margin-top:.25rem}
+.application-submit{display:inline-flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:2rem;padding:.375rem .875rem;border:1px solid transparent;border-radius:.75rem;background:var(--color-kumo-brand);color:#fff;font:500 .875rem/1.25rem var(--font-sans);transition:background-color 180ms ease-out;cursor:pointer}
+.application-submit:disabled{opacity:.55;cursor:wait}
+.application-privacy{font-size:.75rem;line-height:1.5;color:var(--home-subtle)}
+.application-status{margin-top:1rem;font-size:.875rem;white-space:pre-line}
+.application-status[data-state=error]{color:#982f25}
+.application-status[data-state=success]{color:#236045}
+.application-reference{font-size:.75rem;color:var(--home-subtle);overflow-wrap:anywhere}
+.application-sms{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 1rem;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--home-line);font-size:.875rem}
+.application-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+
+@media(max-width:900px){
+ .site-frame{padding-inline:1.5rem}
+ .hero{gap:2rem}
+ h1{font-size:2.125rem}
+ .introduction{font-size:1.375rem}
+}
+@media(max-width:700px){
+ body{padding:0}
+ body::before{display:none}
+ .site-frame{padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+ .site-header{min-height:5.5rem;padding-top:env(safe-area-inset-top);gap:1rem}
+ .keiki-logo{padding:.5rem}
+ .keiki-logo img{width:2.25rem}
+ .maritime-logo{width:2.25rem;height:2.25rem}
+ .maritime-logo img{width:1.375rem}
+ .brand-pair{gap:.375rem}
+ .header-actions{gap:.875rem}
+ .hero{grid-template-columns:minmax(0,1fr);gap:2.5rem;padding:2.75rem 0 2.5rem}
+ h1{font-size:clamp(1.875rem,7.6vw,2.75rem);line-height:1.15}
+ .introduction{font-size:1.375rem;margin-top:1.5rem;max-width:none}
+ .reading-copy{margin-top:1.5rem}
+ .hero-actions{margin-top:1.5rem}
+ .button-primary{width:100%}
+ .hero-art{max-width:28rem;width:100%;margin:0 auto}
+ main,.dates{scroll-margin-top:calc(6.5rem + env(safe-area-inset-top))}
+ .dates{padding:2rem 0 2.5rem}
+ .dates h2{font-size:1.375rem}
+ .dates dl{grid-template-columns:1fr;gap:1.25rem;margin-top:1.5rem}
+ .dates dd{margin-top:.25rem}
+ .site-footer{align-items:flex-start;flex-direction:column;gap:.5rem;padding:1.25rem 0 calc(1.5rem + env(safe-area-inset-bottom))}
+ .footer-links{gap:1.5rem}
+ .button,.application-submit,.application-close{min-height:2.75rem}
+ .application-close{min-width:2.75rem}
+ .application-shell{padding:1.25rem}
+ .application-identity{grid-template-columns:1fr;gap:1.25rem}
+ .application-dialog input,.application-dialog select,.application-dialog textarea{min-height:2.75rem;font-size:1rem}
+ .application-send{flex-direction:column;align-items:stretch;gap:.875rem}
+ .application-submit{justify-content:space-between}
+ .application-optionals summary{min-height:2.75rem}
+}
+@media(max-width:430px){.header-actions .dates-link{display:none}}
+@media(pointer:coarse){.button,.application-submit,.application-close{min-height:2.75rem}.application-close{min-width:2.75rem}.application-dialog input,.application-dialog select,.application-dialog textarea{min-height:2.75rem;font-size:1rem}.application-optionals summary{min-height:2.75rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}

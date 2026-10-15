@@ -10,6 +10,7 @@ import {bootstrapProfile, selectInitialProfile} from '../dist/shared/profile-boo
 // Point PLAYER_DIR at a separate candidate's dist/shared directory to run the same contract.
 export const sourceDirectory = fileURLToPath(new URL('../dist/shared/', import.meta.url));
 const playerSource = await fs.readFile(path.join(sourceDirectory, 'embed-runtime.js'), 'utf8');
+const phonePlayerSource = await fs.readFile(path.join(sourceDirectory, 'mobile-embed-runtime.js'), 'utf8');
 const wrappers=new Map();
 export const nativePayloads=new Map();
 for(const profile of ['landscape','portrait'])for(const file of await fs.readdir(path.join(sourceDirectory,'../embed-media',profile))){
@@ -19,7 +20,11 @@ for(const profile of ['landscape','portrait'])for(const file of await fs.readdir
   nativePayloads.set(nativePath,await fs.readFile(path.join(sourceDirectory,'..',nativePath)));
 }
 const withoutExports=source=>source.replace(/^export /gm,'');
-const nativeSource=(await Promise.all(['media-lifecycle.mjs','chunk-buffer.mjs','profile-bootstrap.mjs','player.js'].map(file=>fs.readFile(path.join(sourceDirectory,file),'utf8')))).map(source=>withoutExports(source).replace(/^import .*;\n/gm,'')).join('\n');
+const nativeSources={};
+for(const device of ['desktop','phone']){
+  const files=['media-lifecycle.mjs','chunk-buffer.mjs','profile-bootstrap.mjs',...(device==='phone'?['chapter-swipe.mjs','mobile-player.js']:['player.js'])];
+  nativeSources[device]=(await Promise.all(files.map(file=>fs.readFile(path.join(sourceDirectory,file),'utf8')))).map(source=>withoutExports(source).replace(/^import .*;\n/gm,'')).join('\n');
+}
 const helpers=playerSource.slice(playerSource.indexOf('const HEADLINES='),playerSource.indexOf('const track='));
 const timeline=vm.runInNewContext(`(()=>{${helpers};return {HEADLINES,validateManifest,buildScrollMap,frameAtProgress,progressAtFrame,sceneAtFrame,captionOpacity,validateChunks,chunkAtFrame};})()`);
 
@@ -103,7 +108,10 @@ export async function createPlayer({playerKind='embed',saveData=false,mobile=fal
     setTimeout:(fn,ms)=>{const id=++counter;timers.set(id,{fn,ms,due:time+ms});return id;},clearTimeout:id=>timers.delete(id),setInterval:()=>++counter,
     scrollTo:({top})=>{scrollRequests.push(top);sandbox.scrollY=Math.max(0,Math.min(roundScroll?Math.floor(top):top,document.documentElement.scrollHeight-sandbox.innerHeight));},
   };
-  const source=playerKind==='native'?nativeSource:playerSource.slice(playerSource.indexOf('(async()=>{')+'(async()=>{'.length,playerSource.lastIndexOf('})();'));
+  // Fixtures explicitly describe touch devices; no phone code executes for desktop fixtures.
+  const device=(mobile||coarse)&&Math.min(width,height)<=700?'phone':'desktop';
+  const classic=device==='phone'?phonePlayerSource:playerSource;
+  const source=playerKind==='native'?nativeSources[device]:classic.slice(classic.indexOf('(async()=>{')+'(async()=>{'.length,classic.lastIndexOf('})();'));
   const context=vm.createContext(sandbox);
   document.head.append=(script)=>{
     script.parent=document.head;document.head.children.push(script);

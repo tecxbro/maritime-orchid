@@ -1,0 +1,10 @@
+/* Standalone reading document. The shared reading stylesheet owns the design. */
+:root{background:#204c89;color:#fff;font-family:Georgia,'Times New Roman',serif}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+/* Use native page scrolling without loading or initializing the video player. */
+.x-reading-view{position:relative;inset:auto;z-index:auto;min-height:100svh;overflow:visible;overscroll-behavior:auto;touch-action:auto}
+html:has(.application-dialog[open]){overflow:hidden}
+.reading-skip{position:fixed;top:.75rem;left:.75rem;z-index:50;transform:translateY(-200%);padding:.75rem 1rem;background:#fffdf4;color:#17394c;font:1rem/1.4 Arial,sans-serif}
+.reading-skip:focus{transform:none}

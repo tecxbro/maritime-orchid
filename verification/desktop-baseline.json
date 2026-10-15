@@ -1,0 +1,8 @@
+{
+  "version": 12,
+  "sourceCommit": "eb4adba71c765488c6c22df52662eec972c8c009",
+  "sha256": {
+    "dist/shared/player.js": "cebfcb476b7fd5a5cb7307419ccb9b302ecf02dda5bcd796b8ffc1d8fbf7132a",
+    "dist/shared/embed-runtime.js": "8fa1c71d070a4e6314c76163c31fcdbdf6502bb4ceb98818a3e9be6632cf9ed4"
+  }
+}

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {createPlayer} from './premium-card-harness.mjs';
 
-const html=await fs.readFile(new URL('../dist/player.html',import.meta.url),'utf8');
+const html=await fs.readFile(new URL('../dist/video/player.html',import.meta.url),'utf8');
 const bundle=JSON.parse(html.match(/<script type="application\/json" id="journey-data">([\s\S]*?)<\/script>/)[1]);
 const flush=async player=>{for(let i=0;i<8;i++)await player.frame();};
 const visible=player=>player.elements.media.querySelectorAll('video').filter(video=>video.getAttribute('data-presented')!==null);
@@ -57,9 +57,9 @@ test('embed: delayed phone chunk keeps the previous native surface and captions'
  }finally{await player.dispose();}
 });
 
-test('main and both player routes load sky layout after their existing styles',async()=>{
+test('secondary video routes load sky layout after their existing styles',async()=>{
  const css=await fs.readFile(new URL('../dist/shared/mobile-presentation.css',import.meta.url),'utf8');
- for(const route of ['index.html','player.html','player/index.html']){
+ for(const route of ['video.html','video/index.html','video/player.html','video/player/index.html']){
   const source=await fs.readFile(new URL('../dist/'+route,import.meta.url),'utf8');
   assert(source.includes('shared/mobile-presentation.css?v=20261013-mobile11'));
   assert(source.lastIndexOf('shared/mobile-presentation.css')>source.lastIndexOf('shared/premium-layout.css'));

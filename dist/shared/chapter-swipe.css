@@ -1,0 +1,2 @@
+/* Programmatic chapter transitions own phone gestures; dialogs retain native scrolling. */
+html.phone-chapters #track{touch-action:none}

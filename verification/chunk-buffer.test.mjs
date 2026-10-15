@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {createPlayer,settle,nativePayloads} from './premium-card-harness.mjs';
 
-const html=await fs.readFile(new URL('../dist/player.html',import.meta.url),'utf8');
+const html=await fs.readFile(new URL('../dist/video/player.html',import.meta.url),'utf8');
 const bundle=JSON.parse(html.match(/<script type="application\/json" id="journey-data">([\s\S]*?)<\/script>/)[1]);
 const flush=async player=>{for(let i=0;i<8;i++)await player.frame();};
 const nativeResponse=async path=>new Response(nativePayloads.get(path));

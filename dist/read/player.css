@@ -1,0 +1,19 @@
+/* X card only: the content scrolls inside the iframe, independently of its document. */
+html,body{
+ height:100%;
+ overflow:hidden;
+ overscroll-behavior:none;
+}
+.x-reading-view{
+ position:fixed;
+ inset:0;
+ height:100%;
+ min-height:0;
+ overflow-x:hidden;
+ overflow-y:auto;
+ overscroll-behavior:contain;
+ touch-action:pan-y;
+ -webkit-overflow-scrolling:touch;
+}
+/* The application retains its own scrolling while the page behind it stays still. */
+body:has(.application-dialog[open]) .x-reading-view{overflow-y:hidden}

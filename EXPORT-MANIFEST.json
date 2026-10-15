@@ -1,18 +1,72 @@
 {
-  "scope": "Premium X player only",
-  "sourceCommit": "5234a5f357c85471a03dbe84a6bb09c262bdb821",
-  "fileCountExcludingManifest": 131,
-  "totalBytesExcludingManifest": 62948790,
+  "scope": "Keiki \u00d7 Maritime read-only primary site and secondary video experiences",
+  "sourceCommit": "c8dccef05a4b0353098889fff58285b2eb56a38d",
+  "sourceVersion": 28,
+  "githubBaseCommit": "725abc27b92d591e8bc25171da23e42417b055ed",
+  "publicOrigin": "https://competition.maritime.sh",
+  "adaptations": [
+    "Public metadata uses the competition domain.",
+    "Keiki brand video link targets /video/player.",
+    "Verification and documentation reflect production routes.",
+    "GitHub application backend is preserved; ChatGPT hosting binding and transient receipt are excluded."
+  ],
+  "fileCountExcludingManifest": 179,
+  "totalBytesExcludingManifest": 67267562,
   "files": [
     {
+      "path": "READING-DESIGN.md",
+      "bytes": 10310,
+      "sha256": "7f03c18bea98493c08f168eab0fbca0bdf77edf267809944ceb585a177a43996"
+    },
+    {
       "path": "README.md",
-      "bytes": 4554,
-      "sha256": "f57a1f40935649bd55f9e3b0bf7a877f8db06f0b3681f3a268d22080a7d14da3"
+      "bytes": 4794,
+      "sha256": "6c8363c4aa634c4e7d60c0b608a2db10ef36a04646789f33535fa8213508c8ea"
     },
     {
       "path": "backend/Code.gs",
       "bytes": 4072,
       "sha256": "18f3636ec6d562f3c6412efa19febb90040ca9f08a87dde7fa162d3e76c6c1da"
+    },
+    {
+      "path": "design/keikibrand/BRAND-GUIDE.md",
+      "bytes": 35434,
+      "sha256": "0c470bfb462c456330d7a793739e5e68941f737755c18b126f8eda60daa02a26"
+    },
+    {
+      "path": "design/keikibrand/README.md",
+      "bytes": 2220,
+      "sha256": "da1256321d047c07a4ccbc02ea83da317542cd0fcacc8c926eacd3aa911d18bb"
+    },
+    {
+      "path": "design/keikibrand/boat-original.png",
+      "bytes": 2964748,
+      "sha256": "621efafa610a0b1d532f3e2e3e4e453954163b0ca3097fec342f81c37cc43a5a"
+    },
+    {
+      "path": "design/keikibrand/geist-LICENSE.txt",
+      "bytes": 4486,
+      "sha256": "71609cbb5c78b5870d712eab73a31d76622635c6ed034ab5cee3b9ecbda8685f"
+    },
+    {
+      "path": "design/keikibrand/geist-source.json",
+      "bytes": 121,
+      "sha256": "caf8e69dfb901762edd3f71ec8217a2b490c9b0eec5381559ee543852abd85eb"
+    },
+    {
+      "path": "design/keikibrand/inter-LICENSE.txt",
+      "bytes": 4477,
+      "sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345"
+    },
+    {
+      "path": "design/keikibrand/inter-source.json",
+      "bytes": 121,
+      "sha256": "e4e9536e94e2319a2ba0f5799ff78cd86899605d8e72bc81d2e711e30ea30e41"
+    },
+    {
+      "path": "design/read-only/README.md",
+      "bytes": 3109,
+      "sha256": "ec9acf3452463b97a9c714ceff19e8a5bc0b9d2ce5d4e094a7b8509ca2b48716"
     },
     {
       "path": "dist/assets/card-preview.png",
@@ -28,6 +82,21 @@
       "path": "dist/assets/logo-maritime.png",
       "bytes": 31619,
       "sha256": "7920fb818dabcdc695057de4aeee2295128d1b5f82d973d5463f067f56934ee0"
+    },
+    {
+      "path": "dist/assets/reading-blue-background-v1.webp",
+      "bytes": 34344,
+      "sha256": "8049b1a51246799afa3c602ef665f9e99b2d751b342e543672e1271b2651d94e"
+    },
+    {
+      "path": "dist/assets/reading-houses-grass-v2.webp",
+      "bytes": 304304,
+      "sha256": "ddba268724332033cde387717f986501365ce1818f2c2a30ee5187ba6bb1896f"
+    },
+    {
+      "path": "dist/card-v7.html",
+      "bytes": 61047,
+      "sha256": "61054c79cd036fc05e25bbabe0e141ca246ff9d539437400f19493622029d874"
     },
     {
       "path": "dist/config.json",
@@ -261,8 +330,43 @@
     },
     {
       "path": "dist/index.html",
-      "bytes": 61223,
-      "sha256": "f4ce81da2e6e4ee4b61caf2ae20263d3228318cc85e7d29eb743dda3ea18dae1"
+      "bytes": 4372,
+      "sha256": "617776c78b45431f62030813280833b23ec09c49ebe1182548479db49a7192c3"
+    },
+    {
+      "path": "dist/keikibrand/assets/boat.webp",
+      "bytes": 532836,
+      "sha256": "c58001dd41b3319470334178a09768adf6485710bcc9480149c59dff3a071f69"
+    },
+    {
+      "path": "dist/keikibrand/assets/geist-latin.woff2",
+      "bytes": 29400,
+      "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
+    },
+    {
+      "path": "dist/keikibrand/assets/inter-latin.woff2",
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62"
+    },
+    {
+      "path": "dist/keikibrand/assets/keiki-mark-navy.svg",
+      "bytes": 17473,
+      "sha256": "4653d191a0a0c53085ff0bd969755cfb712caf3a3a549eadf71cf0954e3bc3f0"
+    },
+    {
+      "path": "dist/keikibrand/brand.css",
+      "bytes": 11111,
+      "sha256": "93a7208f35c955e4a0f452c756a4e84d3eb5f993c160c77e222091785fb391b2"
+    },
+    {
+      "path": "dist/keikibrand/index.html",
+      "bytes": 3701,
+      "sha256": "ea2dbc5e3cfdb8361bb5ed5b0cd6b4364974c0977739b8343e316933c32fb675"
+    },
+    {
+      "path": "dist/keikibrand.html",
+      "bytes": 3701,
+      "sha256": "ea2dbc5e3cfdb8361bb5ed5b0cd6b4364974c0977739b8343e316933c32fb675"
     },
     {
       "path": "dist/media/card-preview.png",
@@ -271,13 +375,13 @@
     },
     {
       "path": "dist/player/index.html",
-      "bytes": 61238,
-      "sha256": "e8446f39da7b6fe5eddb181482ad289b23d65fa95152d0d1c49cbc3f56780dc7"
+      "bytes": 4513,
+      "sha256": "df308199a7d2481eb2fd494a27c73f21453550f273b46cbc0982f108c7430050"
     },
     {
       "path": "dist/player.html",
-      "bytes": 61223,
-      "sha256": "f4ce81da2e6e4ee4b61caf2ae20263d3228318cc85e7d29eb743dda3ea18dae1"
+      "bytes": 4513,
+      "sha256": "df308199a7d2481eb2fd494a27c73f21453550f273b46cbc0982f108c7430050"
     },
     {
       "path": "dist/profiles/landscape/chunk-index.json",
@@ -545,6 +649,26 @@
       "sha256": "64411a764d14c6903d13ab05acf307b8c3f5d87964709b9d3e10411761006fa5"
     },
     {
+      "path": "dist/read/index.html",
+      "bytes": 4372,
+      "sha256": "617776c78b45431f62030813280833b23ec09c49ebe1182548479db49a7192c3"
+    },
+    {
+      "path": "dist/read/player.css",
+      "bytes": 517,
+      "sha256": "646b5753ab1eae16ca8767b31aa4293f0ee86391d686e3c4b2d7aab3a60676d9"
+    },
+    {
+      "path": "dist/read/reading.css",
+      "bytes": 739,
+      "sha256": "f50003808d6a97799c6614f9884f5fc1c83737d8343994b02efa5761c2454176"
+    },
+    {
+      "path": "dist/read.html",
+      "bytes": 4372,
+      "sha256": "617776c78b45431f62030813280833b23ec09c49ebe1182548479db49a7192c3"
+    },
+    {
       "path": "dist/shared/application-config.js",
       "bytes": 264,
       "sha256": "0d344395ff80f4fd2520f191f9019f25187f945cea2c37f912e52484b50a8497"
@@ -558,6 +682,16 @@
       "path": "dist/shared/application.js",
       "bytes": 8894,
       "sha256": "bfbd26de39a76640bf2763d60778f4c3e3241fe7020f8eb3cba107df19bff23e"
+    },
+    {
+      "path": "dist/shared/chapter-swipe.css",
+      "bytes": 138,
+      "sha256": "376ae26b20dbb889534e08c567566e4e585eb72a626d928090960e44508e08c5"
+    },
+    {
+      "path": "dist/shared/chapter-swipe.mjs",
+      "bytes": 2697,
+      "sha256": "b294cbec2055cd6b5f0d671ebe9998b2262f54077a4285a23065f4d6b6b61170"
     },
     {
       "path": "dist/shared/chunk-buffer.mjs",
@@ -575,14 +709,34 @@
       "sha256": "4008b616f7f954f69000b063f9036fa0e663e9b958cf2be7084bdbf755df414c"
     },
     {
+      "path": "dist/shared/main-application-entry.css",
+      "bytes": 344,
+      "sha256": "26b6e9755eaf8814d5acac2ee0d9193ee45aeacdb2c15dbb876063e820e77e81"
+    },
+    {
       "path": "dist/shared/media-lifecycle.mjs",
       "bytes": 12484,
       "sha256": "d6d833d7f0226000777ee3ecf11d4403da1bc1b3e85253ba0f95794a135bd931"
     },
     {
+      "path": "dist/shared/mobile-embed-runtime.js",
+      "bytes": 60930,
+      "sha256": "17505fc9298c0307fabce718bc889d05279f0f21b52d3431c126fa6729f8531f"
+    },
+    {
+      "path": "dist/shared/mobile-player.js",
+      "bytes": 29615,
+      "sha256": "090dce92feef2b618ebaf9b2d37ada5863f3b233f1c4ad3f52f320a1dbc5eb5b"
+    },
+    {
       "path": "dist/shared/mobile-presentation.css",
       "bytes": 3255,
       "sha256": "f6989a53fd1d319fe00d62f100d4f5d3e8456f1bf6fbabf812694ecd5726f62c"
+    },
+    {
+      "path": "dist/shared/player-loader.js",
+      "bytes": 1079,
+      "sha256": "2fb1ae6bbd54af2710b873e44b5df330a8066fdc0146332213ccfad29768a4e1"
     },
     {
       "path": "dist/shared/player.js",
@@ -615,14 +769,59 @@
       "sha256": "aed400ae66081b49d5e018094ac9afe0adf828bfddbb0b0736508b2ea4f6bd8c"
     },
     {
+      "path": "dist/shared/x-player-shell.css",
+      "bytes": 6365,
+      "sha256": "a4188b85c448c5aaf19429629c54764cafb7ace57814c4339065562bf290d09e"
+    },
+    {
+      "path": "dist/shared/x-player-shell.js",
+      "bytes": 3547,
+      "sha256": "f067575d760194ba8d43251b826674d4afcfe9589884770b301f00ecb9e4dee1"
+    },
+    {
       "path": "dist/terms/index.html",
-      "bytes": 6592,
-      "sha256": "95b1b6a0d3129503425c4937a38632f65b53172111f26425e0e105ba9774c937"
+      "bytes": 6760,
+      "sha256": "f2cdec1163255190b28db2a17b87d0021251c18f2b67cc962d981a45e311dc18"
     },
     {
       "path": "dist/terms.html",
-      "bytes": 6592,
-      "sha256": "95b1b6a0d3129503425c4937a38632f65b53172111f26425e0e105ba9774c937"
+      "bytes": 6760,
+      "sha256": "f2cdec1163255190b28db2a17b87d0021251c18f2b67cc962d981a45e311dc18"
+    },
+    {
+      "path": "dist/video/index.html",
+      "bytes": 62192,
+      "sha256": "414c5633c43af944ebcd53fa31e5eab7915a91b573b2ca033dedfeb28be65fe7"
+    },
+    {
+      "path": "dist/video/player/index.html",
+      "bytes": 64042,
+      "sha256": "b670ff3e643290fe4215f9619232dd8929022ff49474d0363f018547f5663beb"
+    },
+    {
+      "path": "dist/video/player.html",
+      "bytes": 64042,
+      "sha256": "b670ff3e643290fe4215f9619232dd8929022ff49474d0363f018547f5663beb"
+    },
+    {
+      "path": "dist/video.html",
+      "bytes": 62192,
+      "sha256": "414c5633c43af944ebcd53fa31e5eab7915a91b573b2ca033dedfeb28be65fe7"
+    },
+    {
+      "path": "scripts/reading-page.html",
+      "bytes": 4465,
+      "sha256": "b2b1a5f185ff904ef173de2facc37e2a3ec51aca4621d2415ed489f1e5df6ef5"
+    },
+    {
+      "path": "scripts/refine-premium-card.py",
+      "bytes": 3553,
+      "sha256": "4ee0db993d4cb3d0ab39abf3d4d739b0c0ab7710579cf9acbccb16b40e6cf146"
+    },
+    {
+      "path": "scripts/sync-chapter-swipe.mjs",
+      "bytes": 863,
+      "sha256": "743bfd763c0eff046b70e151a1a01b31b9c6e2ffa9af3ba419ec2999927874ba"
     },
     {
       "path": "scripts/sync-chunk-buffer.mjs",
@@ -630,34 +829,84 @@
       "sha256": "e74ff133a0648abb62d4f4097dbd798d613d1c531be0b3fd3557dd8c8137c202"
     },
     {
+      "path": "scripts/sync-reading-pages.mjs",
+      "bytes": 1877,
+      "sha256": "9f40fd3bafa7698cff92eb2d02f094e9cdc0a9ba27f42261a5c9a6c1c4962dda"
+    },
+    {
+      "path": "scripts/sync-x-reading-view.mjs",
+      "bytes": 741,
+      "sha256": "2eb5af36e75a28cd0238ff11b58d50fb66d786b44dbdbdb9a52b263b03435298"
+    },
+    {
+      "path": "scripts/x-reading-view.html",
+      "bytes": 2437,
+      "sha256": "b470b0af0c1a8bfab7f62a051c18f566f5e95af9e1927ee0f15411f8395d375d"
+    },
+    {
+      "path": "verification/chapter-swipe.test.mjs",
+      "bytes": 9340,
+      "sha256": "5a8f0a294bb1067cab14d477c85c5d86db842337af7f6ebc678229b4cd3a69e8"
+    },
+    {
       "path": "verification/chunk-buffer.test.mjs",
-      "bytes": 7793,
-      "sha256": "000cda67a37711be7c162e298cc45d317106af6ff80e69f9647288696853714f"
+      "bytes": 7799,
+      "sha256": "5b57973c120396f3ef3f78bf3e5b280cc0721322f3252cbb1c5eec0d66a5a79e"
+    },
+    {
+      "path": "verification/desktop-baseline.json",
+      "bytes": 301,
+      "sha256": "611a18ee1443d50279e60add29d886c8c514cadcafc891fafa0d895dc27bb42b"
+    },
+    {
+      "path": "verification/desktop-isolation.test.mjs",
+      "bytes": 4837,
+      "sha256": "f61fd7cc241c978207528de534eed4767e8ca110da59a7eabb43bd2d5de46e7c"
     },
     {
       "path": "verification/mobile-presentation.test.mjs",
-      "bytes": 4451,
-      "sha256": "2bde653ce36e444c113e90298bcbc238bab79643896ac1dc3ad02431b2c1f6f8"
+      "bytes": 4483,
+      "sha256": "70fd0287290e72d27c66ab3350171fa7cd962b15ff4477c7df33a9447aa9c9a5"
     },
     {
       "path": "verification/poster-markup.test.mjs",
-      "bytes": 1474,
-      "sha256": "6c1a1009fc2bda499a0f2f32d4a30fed999cbc674c9c784cd6712717ddb0523a"
+      "bytes": 1483,
+      "sha256": "10a1fd931a3b9229074066fa39285eb4c25e2af16ab4eaff5304df7884542e9e"
     },
     {
       "path": "verification/premium-card-harness.mjs",
-      "bytes": 16165,
-      "sha256": "922eadd2e50d8d44e95c02b7c5c8120f441dc2d359153efc6c9a74a978078cbd"
+      "bytes": 16665,
+      "sha256": "ce554134e3da2448cecc2939f4b6a5174e5ab028157130f3711d38179b95c29c"
     },
     {
       "path": "verification/premium-card.test.mjs",
-      "bytes": 5690,
-      "sha256": "6ac63e8dca335756482a9e06159d999fd763de5fd5b37e66ffa8ca0f05d66d79"
+      "bytes": 5680,
+      "sha256": "d4aa7b32fb0187b4c847c225eed2f000f0090a62084089ffb3080301610277f4"
+    },
+    {
+      "path": "verification/primary-reading.test.mjs",
+      "bytes": 9144,
+      "sha256": "d3f19c7db9f346df4d835dbb3ed25050021ef57d15e970299d411f1a6815134f"
     },
     {
       "path": "verification/quiet-card-preservation.json",
       "bytes": 11588,
       "sha256": "86a5021186e3f448a2a989a2519e5d15e77bf3dcb290c7c7df2c9765373bbcfc"
+    },
+    {
+      "path": "verification/video-route-baseline.json",
+      "bytes": 693,
+      "sha256": "e8a3250ff883386c3df3a1f6c7c70640dcb52f748b64d98306e07ba7cf51098f"
+    },
+    {
+      "path": "verification/x-player-protected-files.json",
+      "bytes": 1418,
+      "sha256": "3df945bfe50ceebcedf6b949f2781a4d01e47d3f5a948b78324855c5666a08b8"
+    },
+    {
+      "path": "verification/x-player-shell.test.mjs",
+      "bytes": 9894,
+      "sha256": "41515406943f02aafb467d5de7b05fa54506e86205f949242d4cb9deb1bad601"
     }
   ]
 }

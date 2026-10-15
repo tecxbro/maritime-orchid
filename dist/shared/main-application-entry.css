@@ -1,0 +1,5 @@
+/* Main-site hierarchy: a gold form action followed by a quiet text option. */
+.sms[type="button"]{cursor:pointer;text-align:left}
+.text-to-apply{display:block;width:max-content;max-width:100%;margin:-8px auto 0;text-align:center}
+#final-sms[hidden]+.text-to-apply{display:none}
+#program-details .text-to-apply{margin:10px 0 0;text-align:left}

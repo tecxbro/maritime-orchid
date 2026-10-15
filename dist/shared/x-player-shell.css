@@ -1,0 +1,67 @@
+/* X-player UI only. Reading mode keeps a quiet, recognizable house-and-grass background. */
+.x-player-actions{position:fixed;z-index:35;top:max(.625rem,env(safe-area-inset-top));right:max(.75rem,env(safe-area-inset-right));pointer-events:none}
+.x-player-actions button{pointer-events:auto;cursor:pointer;touch-action:manipulation}
+.x-read-program{position:fixed;bottom:max(.75rem,env(safe-area-inset-bottom));left:max(.75rem,env(safe-area-inset-left));border:0;background:#124d8fe6;color:#fff;border-radius:999px;padding:.55rem .75rem;min-height:2.75rem;font:12px/1.2 Arial,sans-serif}
+.x-always-apply{border:1px solid #b48a3f;background:linear-gradient(110deg,#cfaa60,#eed79c 49%,#d5b369);color:#302714;border-radius:999px;min-height:2.75rem;min-width:5.25rem;padding:.65rem 1rem;font:600 13px/1.2 Arial,sans-serif;box-shadow:inset 0 1px 0 #fff2cc88}
+.x-reading-view{position:fixed;inset:0;z-index:30;isolation:isolate;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;background:#204c89;color:#fff;font-size:1.125rem;line-height:1.8;text-align:left;scrollbar-width:thin;scrollbar-color:#ffffff66 #204c89;scroll-padding-top:4rem}
+.x-reading-view::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-position:center;background-size:cover;opacity:1}
+.x-reading-mode .x-reading-view::before{background-image:linear-gradient(90deg,#00000024,#0000004d 26%,#0000004d 74%,#00000024),url('../assets/reading-houses-grass-v2.webp')}
+.x-reading-view:focus{outline:none}
+.x-reading-view [hidden]{display:none!important}
+.x-reading-view *{box-sizing:border-box}
+.x-reading-view p,.x-reading-view h1,.x-reading-view h2,.x-reading-view dl,.x-reading-view dd{margin:0}
+.x-reading-view a{color:inherit;text-decoration:underline;text-underline-offset:.2em}
+.x-reading-view button,.x-reading-view a{touch-action:manipulation}
+.x-reading-view button:focus-visible,.x-reading-view a:focus-visible{outline:2px solid #fff;outline-offset:5px}
+.x-reading-topbar{position:relative;min-height:4rem;display:flex;align-items:center;padding:.75rem 7rem .75rem clamp(1.25rem,5vw,5rem);font-size:1rem;line-height:1.4}
+.x-reading-topbar a{text-decoration:none}
+.x-reading-brands{display:inline-flex;align-items:center;gap:.75rem;min-height:2.75rem}
+.x-reading-logo{display:flex;align-items:center;justify-content:center;flex:none;width:2.5rem;height:2.5rem;background:#fffdf4;border-radius:18%;overflow:hidden}
+.x-reading-logo-maritime{background:#000;border-radius:20%}
+.x-reading-logo img{display:block;width:82%;height:82%;object-fit:contain}
+.x-reading-brand-times{font-size:1.375rem;line-height:1;opacity:.8}
+.x-reading-page{padding:0 1.5rem max(3rem,env(safe-area-inset-bottom))}
+.x-reading-title{padding:clamp(6rem,11vw,10rem) 0 clamp(4rem,7vw,6rem);text-align:center}
+.x-reading-title h1{color:#fff;text-align:center;text-shadow:none;max-width:none;font:400 clamp(2.5rem,7.5vw,6.5rem)/1.1 Georgia,'Times New Roman',serif;letter-spacing:-.035em;white-space:nowrap}
+.x-reading-title h1 span{font-weight:400;font-size:.7em;vertical-align:.1em;padding:0 .1em}
+.x-reading-copy{max-width:40rem;margin:auto}
+.x-reading-copy>p{margin-bottom:1.5rem}
+.x-reading-apply{min-height:3rem;min-width:9rem;padding:.75rem 2rem;margin-top:.75rem;border:1px solid #b48a3f;border-radius:999px;background:linear-gradient(110deg,#cfaa60,#eed79c 49%,#d5b369);color:#302714;box-shadow:inset 0 1px 0 #fff2cc88;font:1rem/1.4 Arial,sans-serif;cursor:pointer}
+.x-reading-apply:hover{background:linear-gradient(110deg,#d6b46e,#f4e0ae 49%,#debf80)}
+.x-reading-dates{margin-top:4rem}
+.x-reading-dates h2{color:#fff;text-align:left;text-shadow:none;max-width:none;letter-spacing:0;font:400 1.125rem/1.5 Georgia,'Times New Roman',serif;margin-bottom:1.5rem}
+.x-reading-dates dl>div{margin-bottom:1rem}
+.x-reading-dates dt,.x-reading-dates dd{display:inline;font:inherit}
+.x-reading-dates dt::after{content:': '}
+.x-reading-footer{display:flex;align-items:center;flex-wrap:wrap;gap:1.5rem;margin-top:3rem;font:1rem/1.5 Arial,sans-serif}
+.x-reading-footer button{border:0;padding:.5rem 0;min-height:2.75rem;background:none;color:#fff;font:inherit;text-decoration:underline;text-underline-offset:.2em;cursor:pointer}
+.x-reading-notice{margin:0;padding:.75rem 1.5rem;background:#ffffff14;font:.875rem/1.6 Arial,sans-serif}
+.x-reading-mode .application-eyebrow span{display:none}
+.x-reading-mode #track,.x-reading-mode body>nav,.x-reading-mode .public-terms{visibility:hidden}
+.x-reading-mode #media-status,.x-reading-mode #media-retry{display:none!important}
+.x-reading-mode .x-read-program{display:none}
+.x-player-actions button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+/* Phone reading layout only; the desktop layout and video controls stay shared. */
+@media(max-width:700px){
+ .x-reading-view{font-size:1.0625rem;line-height:1.65;scroll-padding-top:calc(4.5rem + env(safe-area-inset-top))}
+ .x-reading-topbar{padding:max(.625rem,env(safe-area-inset-top)) max(7rem,calc(env(safe-area-inset-right) + 6.25rem)) .625rem max(1.25rem,env(safe-area-inset-left))}
+ .x-reading-brands{gap:.625rem}
+ .x-reading-logo{width:2.25rem;height:2.25rem}
+ .x-reading-brand-times{font-size:1.125rem}
+ .x-reading-page{padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right));padding-bottom:calc(2.5rem + env(safe-area-inset-bottom))}
+ .x-reading-title{padding:3rem 0 2rem}
+ .x-reading-title h1{font-size:clamp(2.125rem,8.2vw,3.5rem);line-height:1.12;white-space:normal;text-wrap:balance}
+ .x-reading-copy>p{margin-bottom:1.25rem}
+ .x-reading-apply{display:block;width:100%;min-width:0;min-height:3.125rem;margin-top:.5rem}
+ .x-reading-dates{margin-top:2.5rem}
+ .x-reading-dates h2{font-size:1.25rem;margin-bottom:1.25rem}
+ .x-reading-dates dl>div{margin-bottom:1.25rem}
+ .x-reading-dates dt,.x-reading-dates dd{display:block}
+ .x-reading-dates dt{font-size:.9375rem;color:#ffffffe0}
+ .x-reading-dates dt::after{content:none}
+ .x-reading-dates dd{margin-top:.25rem}
+ .x-reading-footer{gap:.75rem 1.5rem;margin-top:2rem;font-size:.9375rem}
+ .x-reading-footer a{display:inline-flex;align-items:center;min-height:2.75rem}
+ .x-reading-notice{padding-inline:max(1.25rem,env(safe-area-inset-left)) max(1.25rem,env(safe-area-inset-right))}
+}
+@media(max-width:350px){.x-reading-title h1{font-size:1.875rem}.x-reading-footer{font-size:.875rem}}
