@@ -2,7 +2,7 @@
 
 The competition website is published at **https://competition.maritime.sh**. The main page and X player open the approved read-only competition page, with the Apply form, Program Terms, and October 20–December 1, 2026 program dates.
 
-Program partners: **Keiki × Maritime × supermemory × PumpGTM**. The opening Apply button sits directly below the program title. Participants get full Keiki access, $1,000 in Maritime credits, and access to supermemory and PumpGTM. The existing winning-project awards are retained. Both reading and video routes use the updated Program Terms, including the program-change provision. Social/work links are required, and the application presents the existing Slack and Discord invites after submission.\n\n## Run or deploy
+Program partners: **Keiki × Maritime × supermemory × PumpGTM**. The opening Apply button sits directly below the program title. Participants get full Keiki access, $1,000 in Maritime credits, and access to supermemory and PumpGTM. The existing winning-project awards are retained. Both reading and video routes use the updated Program Terms, including the program-change provision. Socials are required and accept handles, usernames, links or other text, and the application presents the existing Slack and Discord invites after submission.\n\n## Run or deploy
 
 This is a static site with no build step or package installation. Publish **`dist/` as the domain root** on an HTTPS static host. For a local preview, run `python3 -m http.server 8080 --directory dist`.
 
