@@ -11,10 +11,11 @@
     "GitHub application backend is preserved; ChatGPT hosting binding and transient receipt are excluded.",
     "Latest version 30 source synchronized; four partner branding, upfront Apply, participation benefits, application copy, and program terms updated October 29, 2026.",
     "Socials remains required and now accepts any nonempty text, including handles and usernames.",
-    "Slack and Discord community buttons include their matching brand icons."
+    "Slack and Discord community buttons include their matching brand icons.",
+    "Page, Open Graph, and X/Twitter titles include Keiki, Maritime, supermemory, and PumpGTM."
   ],
-  "fileCountExcludingManifest": 183,
-  "totalBytesExcludingManifest": 67305117,
+  "fileCountExcludingManifest": 184,
+  "totalBytesExcludingManifest": 68354539,
   "files": [
     {
       "path": "READING-DESIGN.md",
@@ -120,6 +121,11 @@
       "path": "dist/config.json",
       "bytes": 105345,
       "sha256": "654633c22413ace54379301b8815edaea75d672790d50862e6f53aacd8aeaf3a"
+    },
+    {
+      "path": "dist/embed-media/landscape/.desktop-009.js.1anWwl",
+      "bytes": 1048576,
+      "sha256": "572f5cd58a4dca1b50001d7a2af0a5a8192d2eada0fa53d1f98720b376ce70ef"
     },
     {
       "path": "dist/embed-media/landscape/desktop-000.js",
@@ -348,8 +354,8 @@
     },
     {
       "path": "dist/index.html",
-      "bytes": 4872,
-      "sha256": "6d03d2c0e6ab926da08c3ed0c12fd671c04a198c71c1530dccff8e7feeebd770"
+      "bytes": 5013,
+      "sha256": "8cff86fddd8b33615584314c247becc514738ba4e16b3e35033a63560827c508"
     },
     {
       "path": "dist/keikibrand/assets/boat.webp",
@@ -393,13 +399,13 @@
     },
     {
       "path": "dist/player/index.html",
-      "bytes": 5009,
-      "sha256": "005d2c7e65bb5b3706d1adef5811f3066eb12990d719eec6e72f4b1b122f0ec4"
+      "bytes": 5150,
+      "sha256": "ba6d03ce3fd298a8bb75c52b82fbe9218402cbcd1d2e791fce3e2f99a1906c49"
     },
     {
       "path": "dist/player.html",
-      "bytes": 5009,
-      "sha256": "005d2c7e65bb5b3706d1adef5811f3066eb12990d719eec6e72f4b1b122f0ec4"
+      "bytes": 5150,
+      "sha256": "ba6d03ce3fd298a8bb75c52b82fbe9218402cbcd1d2e791fce3e2f99a1906c49"
     },
     {
       "path": "dist/profiles/landscape/chunk-index.json",
@@ -668,8 +674,8 @@
     },
     {
       "path": "dist/read/index.html",
-      "bytes": 4872,
-      "sha256": "6d03d2c0e6ab926da08c3ed0c12fd671c04a198c71c1530dccff8e7feeebd770"
+      "bytes": 5013,
+      "sha256": "8cff86fddd8b33615584314c247becc514738ba4e16b3e35033a63560827c508"
     },
     {
       "path": "dist/read/player.css",
@@ -683,8 +689,8 @@
     },
     {
       "path": "dist/read.html",
-      "bytes": 4872,
-      "sha256": "6d03d2c0e6ab926da08c3ed0c12fd671c04a198c71c1530dccff8e7feeebd770"
+      "bytes": 5013,
+      "sha256": "8cff86fddd8b33615584314c247becc514738ba4e16b3e35033a63560827c508"
     },
     {
       "path": "dist/shared/application-config.js",
@@ -828,8 +834,8 @@
     },
     {
       "path": "scripts/reading-page.html",
-      "bytes": 4961,
-      "sha256": "61821cc7857aaaf4da1167b5b4e0470ce35ec054679b3e4dae9b7150d4783e44"
+      "bytes": 5102,
+      "sha256": "b398aed88c386fe6cf137a3849a059cd39e1d2e70da839859aa141e06ebfd75f"
     },
     {
       "path": "scripts/refine-premium-card.py",
