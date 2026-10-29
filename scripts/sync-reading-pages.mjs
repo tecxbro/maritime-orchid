@@ -10,8 +10,7 @@ for (const route of routes) {
   const html = template.replaceAll('{{CANONICAL_PATH}}', route.canonical)
     .replaceAll('{{VIDEO_PATH}}', route.video).replace('{{ROBOTS}}', route.robots)
     .replace('{{PLAYER_STYLE}}', route.embed ? '<link rel="stylesheet" href="/read/player.css?v=20261015-scroll28">' : '')
-    .replace('{{SCROLL_ATTRIBUTES}}', route.embed ? ' tabindex="0"' : '')
-    .replace(/^[ \t]+$/gm, '');
+    .replace('{{SCROLL_ATTRIBUTES}}', route.embed ? ' tabindex="0"' : '');
   for (const file of route.files) fs.writeFileSync(new URL(file, root), html);
 }
 

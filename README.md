@@ -1,8 +1,8 @@
-# Keiki × Maritime
+# The First 1,000
 
 The competition website is published at **https://competition.maritime.sh**. The main page and X player open the approved read-only competition page, with the Apply form, Program Terms, and October 20–December 1, 2026 program dates.
 
-## Run or deploy
+Program partners: **Keiki × Maritime × supermemory × PumpGTM**. The opening Apply button sits directly below the program title. Participants get full Keiki access, $1,000 in Maritime credits, and access to supermemory and PumpGTM. The existing winning-project awards are retained. Both reading and video routes use the updated Program Terms, including the program-change provision. Social/work links are required, and the application presents the existing Slack and Discord invites after submission.\n\n## Run or deploy
 
 This is a static site with no build step or package installation. Publish **`dist/` as the domain root** on an HTTPS static host. For a local preview, run `python3 -m http.server 8080 --directory dist`.
 
@@ -56,4 +56,4 @@ node --test verification/*.test.mjs
 
 Tests cover reading routes and copy, public metadata, X scroll styles, modeled video playback, desktop isolation, phone chapter navigation, application markup, fallback behavior, and preservation hashes. They do not establish physical Safari performance or acceptance inside the real X app. No real application is submitted by these checks.
 
-Source: approved ChatGPT Sites version 28, commit `c8dccef05a4b0353098889fff58285b2eb56a38d`, transferred onto GitHub main `725abc27b92d591e8bc25171da23e42417b055ed`. Deployment adaptations change public origins, route the brand variant's video link to `/video/player`, and update verification/documentation. `EXPORT-MANIFEST.json` records the exported files and checksums. ChatGPT hosting bindings and transient refinement receipts are excluded; the existing GitHub backend is retained.
+Source: ChatGPT Sites version 30, commit `0b53cdf73c9849680dff0dd128a28fbe1ad04b59`, transferred onto GitHub main `725abc27b92d591e8bc25171da23e42417b055ed`. Deployment adaptations change public origins, route the brand variant's video link to `/video/player`, and update verification/documentation. `EXPORT-MANIFEST.json` records the exported files and checksums. ChatGPT hosting bindings and transient refinement receipts are excluded; the existing GitHub backend is retained.

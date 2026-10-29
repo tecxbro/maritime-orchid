@@ -65,3 +65,7 @@
  .x-reading-notice{padding-inline:max(1.25rem,env(safe-area-inset-left)) max(1.25rem,env(safe-area-inset-right))}
 }
 @media(max-width:350px){.x-reading-title h1{font-size:1.875rem}.x-reading-footer{font-size:.875rem}}
+
+/* Four program partners and a primary application action in the opening view. */
+.x-reading-brands{flex-wrap:wrap;gap:.65rem}.x-reading-title{padding-top:clamp(3rem,7vw,6rem);padding-bottom:3rem}.x-reading-hero-apply{display:block;margin:2rem auto 0;min-width:11rem;font-weight:600}.x-reading-logo-pumpgtm{background:#101727}.x-reading-logo-pumpgtm img{width:95%;height:95%}
+@media(max-width:700px){.x-reading-topbar{padding-right:6.5rem}.x-reading-brands{gap:.35rem}.x-reading-logo{width:1.9rem;height:1.9rem}.x-reading-brand-times{font-size:.9rem}.x-reading-title{padding:2.5rem 0 2rem}.x-reading-hero-apply{width:min(100%,18rem);margin:1.5rem auto 0}}

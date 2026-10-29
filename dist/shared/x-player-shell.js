@@ -18,7 +18,7 @@
     notice.textContent=reason==='slow'?'The video is taking longer to load. Explore the program here.'
       :'The video is unavailable. You can explore the program and apply here.';
     if(!opening)return;
-    document.title='Keiki × Maritime';
+    document.title='The First 1,000';
     opener=source||document.activeElement;previousInert=!!track.inert;track.inert=true;
     panel.hidden=false;document.documentElement.classList.add('x-reading-mode');lock();
     if(!hasDialog())panel.focus({preventScroll:true});

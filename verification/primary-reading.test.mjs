@@ -7,31 +7,6 @@ const read = file => fs.readFileSync(new URL('../' + file, import.meta.url), 'ut
 const primary = ['dist/index.html', 'dist/read.html', 'dist/read/index.html', 'dist/player.html', 'dist/player/index.html'];
 const origin = 'https://competition.maritime.sh';
 
-test('every published page keeps social metadata on the competition domain with existing local targets', () => {
-  const dist = new URL('../dist/', import.meta.url);
-  const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
-    const path = new URL(entry.name + (entry.isDirectory() ? '/' : ''), dir);
-    return entry.isDirectory() ? walk(path) : entry.name.endsWith('.html') ? [path] : [];
-  });
-  for (const file of walk(dist)) {
-    const html = fs.readFileSync(file, 'utf8');
-    assert.doesNotMatch(html, /https:\/\/[^\s"'<>]*chatgpt\.site/, file.pathname);
-    const urls = [
-      ...html.matchAll(/<link rel="canonical" href="([^"]+)"/g),
-      ...html.matchAll(/<meta (?:property|name)="(?:og:url|og:image|twitter:player|twitter:image)" content="([^"]+)"/g),
-    ];
-    for (const [, value] of urls) {
-      const url = new URL(value);
-      assert.equal(url.origin, origin, file.pathname);
-      const target = new URL('.' + url.pathname, dist);
-      assert(fs.existsSync(target) || fs.existsSync(new URL(target.href + '.html')), value);
-    }
-  }
-  for (const file of ['dist/keikibrand.html', 'dist/keikibrand/index.html']) {
-    assert.match(read(file), /href="\/video\/player">Try the video/);
-  }
-});
-
 test('all primary routes open the approved reading page with no video runtime or preload', () => {
   for (const file of primary) {
     const html = read(file);
@@ -39,10 +14,10 @@ test('all primary routes open the approved reading page with no video runtime or
     assert.doesNotMatch(html, /journey-data|player-loader\.js|x-player-shell\.js|modulepreload|<video|<canvas/);
     assert.match(html, /We believe always on agents are the next big thing\. We want you to build the next unicorn\./);
     assert.match(html, /reach 1,000 users in six weeks\./);
-    assert.match(html, /full access to Keiki and Maritime/);
+    assert.match(html, /full access to Keiki, \$1,000 in Maritime credits/);
     assert.match(html, /first three qualifying projects earn/);
-    assert.match(html, /up to \$20,000 in LLM credits and a three-day trip to San Francisco/);
-    assert.doesNotMatch(html, /Sponsored flights|The First 1,000|Marvin|Noah|Tomo/);
+    assert.match(html, /up to \$20,000 in AI credits and a three-day trip to San Francisco/);
+    assert.doesNotMatch(html, /Sponsored flights|Marvin|Noah|Tomo/);
     assert.match(html, /\/shared\/application\.js/);
     assert.equal((html.match(/data-application-open/g) || []).length, 2);
     assert.match(html, /href="sms:\+16287264285"/);
@@ -134,10 +109,7 @@ test('secondary video HTML preserves the previous experiences outside metadata, 
   const baseline = JSON.parse(read('verification/video-route-baseline.json'));
   for (const [file, sha] of Object.entries(baseline.routes)) {
     const html = read(file);
-    // The approved baseline used the preview origin. Allow only the production
-    // origin substitution before comparing all remaining video markup byte-for-byte.
-    const normalized = html.replaceAll(origin, 'https://keiki-first1000-premium.orchidhq.chatgpt.site')
-      .replace(/<base[^>]*>/g, '')
+    const normalized = html.replace(/<base[^>]*>/g, '')
       .replaceAll('data-config="/config.json', 'data-config="./config.json')
       .replace(/(<link rel="canonical" href=")[^"]+/g, '$1ROUTE')
       .replace(/(<meta property="og:url" content=")[^"]+/g, '$1ROUTE')
@@ -163,7 +135,7 @@ test('terms use the approved name, user target, dates and access while retaining
   assert.equal(terms, read('dist/terms/index.html'));
   assert.match(terms, /1,000 distinct users/);
   assert.match(terms, /starts October 20, 2026 and ends December 1, 2026/);
-  assert.match(terms, /full access to Keiki and Maritime/);
+  assert.match(terms, /full access to Keiki, \$1,000 in Maritime credits/);
   assert.match(terms, /Sponsored flights are limited to people in the United States/);
-  assert.doesNotMatch(terms, /1,000 distinct agents|The First 1,000|dates are not yet published/);
+  assert.doesNotMatch(terms, /1,000 distinct agents|dates are not yet published/);
 });

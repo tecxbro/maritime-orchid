@@ -72,7 +72,7 @@ test('manual reading access works before any frame arrives and restores video co
 
 test('a direct reading link opens immediately, retains the reading view after video readiness, and can return to video',async()=>{
  const p=shell({hash:'#read'});
- assert.equal(p.document.title,'Keiki × Maritime');
+ assert.equal(p.document.title,'The First 1,000');
  assert.equal(p.elements['x-reading-view'].hidden,false);
  assert.equal(p.elements['x-reading-notice'].hidden,true);
  assert.equal(p.elements.track.inert,true);assert.equal(p.stats().locks,1);assert.equal(p.timers.size,0);
@@ -130,7 +130,7 @@ test('Apply uses the existing in-frame application handler in both the film and 
  for(const file of ['dist/video/player.html','dist/video/player/index.html']){
   const html=read(file);
   assert(html.includes('id="x-always-apply" class="x-always-apply" data-application-open'));
-  assert(html.includes('class="x-reading-apply" data-application-open'));
+  assert.match(html, /class="x-reading-apply[^"]*" data-application-open/);
   assert.equal((html.match(/id="x-always-apply"/g)||[]).length,1);
   for(const label of ['Personal.','Business.','1,000 users.','6 weeks.','3 days in San Francisco.'])assert(html.includes('<h2>'+label+'</h2>'));
  }

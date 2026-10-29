@@ -1,17 +1,18 @@
 {
-  "scope": "Keiki \u00d7 Maritime read-only primary site and secondary video experiences",
-  "sourceCommit": "c8dccef05a4b0353098889fff58285b2eb56a38d",
-  "sourceVersion": 28,
+  "scope": "The First 1,000 \u2014 Keiki \u00d7 Maritime \u00d7 supermemory \u00d7 PumpGTM",
+  "sourceCommit": "0b53cdf73c9849680dff0dd128a28fbe1ad04b59",
+  "sourceVersion": 30,
   "githubBaseCommit": "725abc27b92d591e8bc25171da23e42417b055ed",
   "publicOrigin": "https://competition.maritime.sh",
   "adaptations": [
     "Public metadata uses the competition domain.",
     "Keiki brand video link targets /video/player.",
     "Verification and documentation reflect production routes.",
-    "GitHub application backend is preserved; ChatGPT hosting binding and transient receipt are excluded."
+    "GitHub application backend is preserved; ChatGPT hosting binding and transient receipt are excluded.",
+    "Latest version 30 source synchronized; four partner branding, upfront Apply, participation benefits, application copy, and program terms updated October 29, 2026."
   ],
-  "fileCountExcludingManifest": 179,
-  "totalBytesExcludingManifest": 67267562,
+  "fileCountExcludingManifest": 181,
+  "totalBytesExcludingManifest": 67302455,
   "files": [
     {
       "path": "READING-DESIGN.md",
@@ -20,13 +21,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4794,
-      "sha256": "6c8363c4aa634c4e7d60c0b608a2db10ef36a04646789f33535fa8213508c8ea"
-    },
-    {
-      "path": "backend/Code.gs",
-      "bytes": 4072,
-      "sha256": "18f3636ec6d562f3c6412efa19febb90040ca9f08a87dde7fa162d3e76c6c1da"
+      "bytes": 5289,
+      "sha256": "0bf3259276d5a5eb7b61bf6da3774eb9f1f7120429041af51e49b199ee025a4f"
     },
     {
       "path": "design/keikibrand/BRAND-GUIDE.md",
@@ -84,6 +80,16 @@
       "sha256": "7920fb818dabcdc695057de4aeee2295128d1b5f82d973d5463f067f56934ee0"
     },
     {
+      "path": "dist/assets/logo-pumpgtm.png",
+      "bytes": 20094,
+      "sha256": "c386a5e2ae439dc0b11b5856eff8e5a5b36b9c18c82ac5ac87de951bee45e3f6"
+    },
+    {
+      "path": "dist/assets/logo-supermemory.png",
+      "bytes": 5026,
+      "sha256": "41a4864ce15f94c28596554ecf527fd8eaca6d163d9326d96ffaf7657dd65de9"
+    },
+    {
       "path": "dist/assets/reading-blue-background-v1.webp",
       "bytes": 34344,
       "sha256": "8049b1a51246799afa3c602ef665f9e99b2d751b342e543672e1271b2651d94e"
@@ -95,8 +101,8 @@
     },
     {
       "path": "dist/card-v7.html",
-      "bytes": 61047,
-      "sha256": "61054c79cd036fc05e25bbabe0e141ca246ff9d539437400f19493622029d874"
+      "bytes": 61059,
+      "sha256": "27fad1718a77acada9b89e3ac31aff82e6d13ae3b556934ddd92d9fd1aa6288a"
     },
     {
       "path": "dist/config.json",
@@ -330,8 +336,8 @@
     },
     {
       "path": "dist/index.html",
-      "bytes": 4372,
-      "sha256": "617776c78b45431f62030813280833b23ec09c49ebe1182548479db49a7192c3"
+      "bytes": 4870,
+      "sha256": "ba83393ff1e3591ba098632687c0c6cc6f88f5d5c6b75eab57ad6858f78a8167"
     },
     {
       "path": "dist/keikibrand/assets/boat.webp",
@@ -360,13 +366,13 @@
     },
     {
       "path": "dist/keikibrand/index.html",
-      "bytes": 3701,
-      "sha256": "ea2dbc5e3cfdb8361bb5ed5b0cd6b4364974c0977739b8343e316933c32fb675"
+      "bytes": 4089,
+      "sha256": "b9041264d04a38787fea10d03a4496e9c77a5c4d0d10b7ee65cefa15e7646fbd"
     },
     {
       "path": "dist/keikibrand.html",
-      "bytes": 3701,
-      "sha256": "ea2dbc5e3cfdb8361bb5ed5b0cd6b4364974c0977739b8343e316933c32fb675"
+      "bytes": 4089,
+      "sha256": "b9041264d04a38787fea10d03a4496e9c77a5c4d0d10b7ee65cefa15e7646fbd"
     },
     {
       "path": "dist/media/card-preview.png",
@@ -375,13 +381,13 @@
     },
     {
       "path": "dist/player/index.html",
-      "bytes": 4513,
-      "sha256": "df308199a7d2481eb2fd494a27c73f21453550f273b46cbc0982f108c7430050"
+      "bytes": 5007,
+      "sha256": "1263a9896805a971a92d2bf5cc282b4545685c71c9b8ed2fc448b9635d68772e"
     },
     {
       "path": "dist/player.html",
-      "bytes": 4513,
-      "sha256": "df308199a7d2481eb2fd494a27c73f21453550f273b46cbc0982f108c7430050"
+      "bytes": 5007,
+      "sha256": "1263a9896805a971a92d2bf5cc282b4545685c71c9b8ed2fc448b9635d68772e"
     },
     {
       "path": "dist/profiles/landscape/chunk-index.json",
@@ -650,8 +656,8 @@
     },
     {
       "path": "dist/read/index.html",
-      "bytes": 4372,
-      "sha256": "617776c78b45431f62030813280833b23ec09c49ebe1182548479db49a7192c3"
+      "bytes": 4870,
+      "sha256": "ba83393ff1e3591ba098632687c0c6cc6f88f5d5c6b75eab57ad6858f78a8167"
     },
     {
       "path": "dist/read/player.css",
@@ -665,8 +671,8 @@
     },
     {
       "path": "dist/read.html",
-      "bytes": 4372,
-      "sha256": "617776c78b45431f62030813280833b23ec09c49ebe1182548479db49a7192c3"
+      "bytes": 4870,
+      "sha256": "ba83393ff1e3591ba098632687c0c6cc6f88f5d5c6b75eab57ad6858f78a8167"
     },
     {
       "path": "dist/shared/application-config.js",
@@ -675,13 +681,13 @@
     },
     {
       "path": "dist/shared/application.css",
-      "bytes": 8642,
-      "sha256": "33caf578b45d22f5d87e8b82d49ebe5f5010d0f353477086fa54393e0c6285eb"
+      "bytes": 9186,
+      "sha256": "a1e95f59d39137df5ab3f2a93b752e4e6c3f7d8655a8cfb37a2b9e8d2e21e39a"
     },
     {
       "path": "dist/shared/application.js",
-      "bytes": 8894,
-      "sha256": "bfbd26de39a76640bf2763d60778f4c3e3241fe7020f8eb3cba107df19bff23e"
+      "bytes": 11102,
+      "sha256": "c7240df946867ceae1f42fdc181c2a26005952316aff626a82d7b044d9cbe744"
     },
     {
       "path": "dist/shared/chapter-swipe.css",
@@ -770,48 +776,48 @@
     },
     {
       "path": "dist/shared/x-player-shell.css",
-      "bytes": 6365,
-      "sha256": "a4188b85c448c5aaf19429629c54764cafb7ace57814c4339065562bf290d09e"
+      "bytes": 7022,
+      "sha256": "b9e9d0815cf308734c5c3916079e280e65fe42f6529272d3a926691055a620da"
     },
     {
       "path": "dist/shared/x-player-shell.js",
-      "bytes": 3547,
-      "sha256": "f067575d760194ba8d43251b826674d4afcfe9589884770b301f00ecb9e4dee1"
+      "bytes": 3545,
+      "sha256": "5b173a72095f38267e067b5b392943dcebd3cf27ad089c981260fac577fa0ae3"
     },
     {
       "path": "dist/terms/index.html",
-      "bytes": 6760,
-      "sha256": "f2cdec1163255190b28db2a17b87d0021251c18f2b67cc962d981a45e311dc18"
+      "bytes": 7430,
+      "sha256": "0ff5396717df241dde9e7805573ec7586560f1f44517988119362b7626756545"
     },
     {
       "path": "dist/terms.html",
-      "bytes": 6760,
-      "sha256": "f2cdec1163255190b28db2a17b87d0021251c18f2b67cc962d981a45e311dc18"
+      "bytes": 7430,
+      "sha256": "0ff5396717df241dde9e7805573ec7586560f1f44517988119362b7626756545"
     },
     {
       "path": "dist/video/index.html",
-      "bytes": 62192,
-      "sha256": "414c5633c43af944ebcd53fa31e5eab7915a91b573b2ca033dedfeb28be65fe7"
+      "bytes": 62950,
+      "sha256": "42a32e579d07570e658f6660edd0dbfd1a1e7a6c2fa6ed5426944cc3278ab48d"
     },
     {
       "path": "dist/video/player/index.html",
-      "bytes": 64042,
-      "sha256": "b670ff3e643290fe4215f9619232dd8929022ff49474d0363f018547f5663beb"
+      "bytes": 65370,
+      "sha256": "d388b7719877a2974064aa2d5179b7832d9f568184849812cf5bcd01d51ec449"
     },
     {
       "path": "dist/video/player.html",
-      "bytes": 64042,
-      "sha256": "b670ff3e643290fe4215f9619232dd8929022ff49474d0363f018547f5663beb"
+      "bytes": 65370,
+      "sha256": "d388b7719877a2974064aa2d5179b7832d9f568184849812cf5bcd01d51ec449"
     },
     {
       "path": "dist/video.html",
-      "bytes": 62192,
-      "sha256": "414c5633c43af944ebcd53fa31e5eab7915a91b573b2ca033dedfeb28be65fe7"
+      "bytes": 62950,
+      "sha256": "42a32e579d07570e658f6660edd0dbfd1a1e7a6c2fa6ed5426944cc3278ab48d"
     },
     {
       "path": "scripts/reading-page.html",
-      "bytes": 4465,
-      "sha256": "b2b1a5f185ff904ef173de2facc37e2a3ec51aca4621d2415ed489f1e5df6ef5"
+      "bytes": 4959,
+      "sha256": "0f24a1927d77a2fc413220c3d04ac0be66810be055e05091bb41a9e5f7671e08"
     },
     {
       "path": "scripts/refine-premium-card.py",
@@ -830,18 +836,23 @@
     },
     {
       "path": "scripts/sync-reading-pages.mjs",
-      "bytes": 1877,
-      "sha256": "9f40fd3bafa7698cff92eb2d02f094e9cdc0a9ba27f42261a5c9a6c1c4962dda"
+      "bytes": 1846,
+      "sha256": "bfaf5a34b10fcd1f2ebb31b0aad165650d4277013924f13bdb25e1fbd5ad64f0"
     },
     {
       "path": "scripts/sync-x-reading-view.mjs",
-      "bytes": 741,
-      "sha256": "2eb5af36e75a28cd0238ff11b58d50fb66d786b44dbdbdb9a52b263b03435298"
+      "bytes": 742,
+      "sha256": "42c5f2863303f397ba25413386d39ef467e302faebcd8cff1cb54d3661875fcd"
     },
     {
       "path": "scripts/x-reading-view.html",
-      "bytes": 2437,
-      "sha256": "b470b0af0c1a8bfab7f62a051c18f566f5e95af9e1927ee0f15411f8395d375d"
+      "bytes": 2928,
+      "sha256": "68444f124390db0eba4b5af9f6fe68f689e965f5ed559d093205c9c102eafa03"
+    },
+    {
+      "path": "verification/application-community.test.mjs",
+      "bytes": 1706,
+      "sha256": "04f9ec98678bdc909601c95309d4b8f3d062db53a02878ecb0c968d9dd69a6e1"
     },
     {
       "path": "verification/chapter-swipe.test.mjs",
@@ -880,13 +891,13 @@
     },
     {
       "path": "verification/premium-card.test.mjs",
-      "bytes": 5680,
-      "sha256": "d4aa7b32fb0187b4c847c225eed2f000f0090a62084089ffb3080301610277f4"
+      "bytes": 5676,
+      "sha256": "3b22b86c9369c3bc82990e9cdc3b061facadc1d83886b6c493a5ee16c21b4500"
     },
     {
       "path": "verification/primary-reading.test.mjs",
-      "bytes": 9144,
-      "sha256": "d3f19c7db9f346df4d835dbb3ed25050021ef57d15e970299d411f1a6815134f"
+      "bytes": 7648,
+      "sha256": "67820695eea6deafddbc6ac2d20cad0881dc3f3bc7e63df01363e8ecc8671cba"
     },
     {
       "path": "verification/quiet-card-preservation.json",
@@ -896,17 +907,17 @@
     {
       "path": "verification/video-route-baseline.json",
       "bytes": 693,
-      "sha256": "e8a3250ff883386c3df3a1f6c7c70640dcb52f748b64d98306e07ba7cf51098f"
+      "sha256": "6cba0ca8406a77f4b036dba919327fe85f292cc02b476db749819dc1a2038e9f"
     },
     {
       "path": "verification/x-player-protected-files.json",
       "bytes": 1418,
-      "sha256": "3df945bfe50ceebcedf6b949f2781a4d01e47d3f5a948b78324855c5666a08b8"
+      "sha256": "f4dd77f494b11cb139682f38c1e56933d62023642e63287aa339c20c26ca952b"
     },
     {
       "path": "verification/x-player-shell.test.mjs",
       "bytes": 9894,
-      "sha256": "41515406943f02aafb467d5de7b05fa54506e86205f949242d4cb9deb1bad601"
+      "sha256": "ff5729ede2b408eaa75f3abaf01bd3fdb4084543c63e28b4baf41fa60513245d"
     }
   ]
 }

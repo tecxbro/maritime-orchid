@@ -9,6 +9,6 @@ for (const file of ['dist/video/player.html', 'dist/video/player/index.html']) {
   const end = html.indexOf('<nav aria-label="Chapters">', start);
   if (start < 0 || end < 0) throw new Error(`Reading view boundaries missing: ${file}`);
   html = html.slice(0, start) + fragment + html.slice(end);
-  html = html.replace(/x-player-shell\.css\?v=[^"\s]+/g, 'x-player-shell.css?v=20261015-reading22');
+  html = html.replace(/x-player-shell\.css\?v=[^"\s]+/g, 'x-player-shell.css?v=20261029-partners31');
   fs.writeFileSync(path, html);
 }

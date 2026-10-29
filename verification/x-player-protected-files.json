@@ -8,9 +8,9 @@
   "dist/shared/chapter-swipe.css": "376ae26b20dbb889534e08c567566e4e585eb72a626d928090960e44508e08c5",
   "dist/shared/chunk-buffer.mjs": "071b6d49534d43d16521ae6d334f0bf1b422f917c629d89806ee68977bb94bd1",
   "dist/shared/media-lifecycle.mjs": "d6d833d7f0226000777ee3ecf11d4403da1bc1b3e85253ba0f95794a135bd931",
-  "dist/shared/application.js": "27046d537ef1ee846f303ed2a4ea54a1752730c83097014097bb08729e65cecc",
+  "dist/shared/application.js": "c7240df946867ceae1f42fdc181c2a26005952316aff626a82d7b044d9cbe744",
   "dist/shared/application.css": "a1e95f59d39137df5ab3f2a93b752e4e6c3f7d8655a8cfb37a2b9e8d2e21e39a",
   "dist/shared/application-config.js": "0d344395ff80f4fd2520f191f9019f25187f945cea2c37f912e52484b50a8497",
-  "dist/terms.html": "f2cdec1163255190b28db2a17b87d0021251c18f2b67cc962d981a45e311dc18",
-  "dist/terms/index.html": "f2cdec1163255190b28db2a17b87d0021251c18f2b67cc962d981a45e311dc18"
+  "dist/terms.html": "0ff5396717df241dde9e7805573ec7586560f1f44517988119362b7626756545",
+  "dist/terms/index.html": "0ff5396717df241dde9e7805573ec7586560f1f44517988119362b7626756545"
 }
