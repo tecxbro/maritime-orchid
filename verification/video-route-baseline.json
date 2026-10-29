@@ -2,9 +2,9 @@
   "sourceCommit": "434c7efcc854eced0f83f15c8b5a1adadaeca53e",
   "normalization": "Remove base element; restore relative data-config; replace canonical, og:url, twitter:player, and reading-view section with stable markers. All other HTML must match the previous main/video player.",
   "routes": {
-    "dist/video.html": "801add6d741e65e67cbc609003416fdaf2c753cd7e0d8be3c36a3d5a13141886",
-    "dist/video/index.html": "801add6d741e65e67cbc609003416fdaf2c753cd7e0d8be3c36a3d5a13141886",
-    "dist/video/player.html": "a4bdffff5c755ccf19a45f99ddc116164f9dc479ad24886729e8b82337c51c0f",
-    "dist/video/player/index.html": "a4bdffff5c755ccf19a45f99ddc116164f9dc479ad24886729e8b82337c51c0f"
+    "dist/video.html": "fc090825f936b0da4c2fca4cbcf74444cf689c8286a4463c7080f679d68331e1",
+    "dist/video/index.html": "fc090825f936b0da4c2fca4cbcf74444cf689c8286a4463c7080f679d68331e1",
+    "dist/video/player.html": "d6556010d6f4c527f659552e4d8e7ae02e62039d4ba7fbb6a4ade72647ff335d",
+    "dist/video/player/index.html": "d6556010d6f4c527f659552e4d8e7ae02e62039d4ba7fbb6a4ade72647ff335d"
   }
 }

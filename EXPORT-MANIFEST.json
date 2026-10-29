@@ -10,10 +10,11 @@
     "Verification and documentation reflect production routes.",
     "GitHub application backend is preserved; ChatGPT hosting binding and transient receipt are excluded.",
     "Latest version 30 source synchronized; four partner branding, upfront Apply, participation benefits, application copy, and program terms updated October 29, 2026.",
-    "Socials remains required and now accepts any nonempty text, including handles and usernames."
+    "Socials remains required and now accepts any nonempty text, including handles and usernames.",
+    "Slack and Discord community buttons include their matching brand icons."
   ],
-  "fileCountExcludingManifest": 181,
-  "totalBytesExcludingManifest": 67302090,
+  "fileCountExcludingManifest": 183,
+  "totalBytesExcludingManifest": 67305117,
   "files": [
     {
       "path": "READING-DESIGN.md",
@@ -71,6 +72,11 @@
       "sha256": "ac882927752e2c133ad4f9ebe8d86ad0db620533ef02a64cd0a129927f94872d"
     },
     {
+      "path": "dist/assets/logo-discord.svg",
+      "bytes": 1374,
+      "sha256": "1d364b72c9eaf1fe37d17ca88cd8fb541308dc0f3b09e2ab3b824f380b3493d5"
+    },
+    {
       "path": "dist/assets/logo-keiki.png",
       "bytes": 68987,
       "sha256": "7d8b7bfee7402df36276f71ca470bf363fef8b5e0db73c56679720920930fbb0"
@@ -84,6 +90,11 @@
       "path": "dist/assets/logo-pumpgtm.png",
       "bytes": 20094,
       "sha256": "c386a5e2ae439dc0b11b5856eff8e5a5b36b9c18c82ac5ac87de951bee45e3f6"
+    },
+    {
+      "path": "dist/assets/logo-slack.svg",
+      "bytes": 1123,
+      "sha256": "f23c317b279f53dcd2260a6cd2e279f7a696f87dcb3da259d6201f05bbc45b0d"
     },
     {
       "path": "dist/assets/logo-supermemory.png",
@@ -102,8 +113,8 @@
     },
     {
       "path": "dist/card-v7.html",
-      "bytes": 61058,
-      "sha256": "84f0b1e2779379f540424aea40f446975faff294bdf168a50d81e0562bf1d55d"
+      "bytes": 61061,
+      "sha256": "003766303ecc62d3cd0b5a758ec37c9da7b9ce51b5de9df7f5e758ad0886dbdc"
     },
     {
       "path": "dist/config.json",
@@ -337,8 +348,8 @@
     },
     {
       "path": "dist/index.html",
-      "bytes": 4869,
-      "sha256": "9d537bc56436c4cc8a6aeea41c7b3ba9b24600831cebfa731acd2ecf7e3c3d8d"
+      "bytes": 4872,
+      "sha256": "6d03d2c0e6ab926da08c3ed0c12fd671c04a198c71c1530dccff8e7feeebd770"
     },
     {
       "path": "dist/keikibrand/assets/boat.webp",
@@ -367,13 +378,13 @@
     },
     {
       "path": "dist/keikibrand/index.html",
-      "bytes": 4088,
-      "sha256": "592435511e51cd68577091104607762f7126d86bf9539f8b553f35ccc8865abc"
+      "bytes": 4090,
+      "sha256": "daee90097ab380a2ea381e12c97cd3f38818f03173957d2c3f61d12d96b8625b"
     },
     {
       "path": "dist/keikibrand.html",
-      "bytes": 4088,
-      "sha256": "592435511e51cd68577091104607762f7126d86bf9539f8b553f35ccc8865abc"
+      "bytes": 4090,
+      "sha256": "daee90097ab380a2ea381e12c97cd3f38818f03173957d2c3f61d12d96b8625b"
     },
     {
       "path": "dist/media/card-preview.png",
@@ -382,13 +393,13 @@
     },
     {
       "path": "dist/player/index.html",
-      "bytes": 5006,
-      "sha256": "ef07a2351821bdf5a35d0b88f60a2bdd13c7a6f517af31a57266c02f842d8c53"
+      "bytes": 5009,
+      "sha256": "005d2c7e65bb5b3706d1adef5811f3066eb12990d719eec6e72f4b1b122f0ec4"
     },
     {
       "path": "dist/player.html",
-      "bytes": 5006,
-      "sha256": "ef07a2351821bdf5a35d0b88f60a2bdd13c7a6f517af31a57266c02f842d8c53"
+      "bytes": 5009,
+      "sha256": "005d2c7e65bb5b3706d1adef5811f3066eb12990d719eec6e72f4b1b122f0ec4"
     },
     {
       "path": "dist/profiles/landscape/chunk-index.json",
@@ -657,8 +668,8 @@
     },
     {
       "path": "dist/read/index.html",
-      "bytes": 4869,
-      "sha256": "9d537bc56436c4cc8a6aeea41c7b3ba9b24600831cebfa731acd2ecf7e3c3d8d"
+      "bytes": 4872,
+      "sha256": "6d03d2c0e6ab926da08c3ed0c12fd671c04a198c71c1530dccff8e7feeebd770"
     },
     {
       "path": "dist/read/player.css",
@@ -672,8 +683,8 @@
     },
     {
       "path": "dist/read.html",
-      "bytes": 4869,
-      "sha256": "9d537bc56436c4cc8a6aeea41c7b3ba9b24600831cebfa731acd2ecf7e3c3d8d"
+      "bytes": 4872,
+      "sha256": "6d03d2c0e6ab926da08c3ed0c12fd671c04a198c71c1530dccff8e7feeebd770"
     },
     {
       "path": "dist/shared/application-config.js",
@@ -682,13 +693,13 @@
     },
     {
       "path": "dist/shared/application.css",
-      "bytes": 9186,
-      "sha256": "a1e95f59d39137df5ab3f2a93b752e4e6c3f7d8655a8cfb37a2b9e8d2e21e39a"
+      "bytes": 9415,
+      "sha256": "eb6f0f508c12965770ce2340d7114fda2baa27f4baa1b03f9f198f8ce76a0402"
     },
     {
       "path": "dist/shared/application.js",
-      "bytes": 10636,
-      "sha256": "0e38fea9bab3201fa76323feaf412417b87f58ebe7dd3a146678422a696d6e86"
+      "bytes": 10900,
+      "sha256": "5eed278349e4a758932dced58e37fb5d3c521e6fa973486b56f7aba525694670"
     },
     {
       "path": "dist/shared/chapter-swipe.css",
@@ -797,28 +808,28 @@
     },
     {
       "path": "dist/video/index.html",
-      "bytes": 62949,
-      "sha256": "2c319b5e1ac079151f2df00b19cf5d8a795bc57606c737da1aaf2b15e27b212f"
+      "bytes": 62952,
+      "sha256": "6ab63e144fdc4b7d273d11e1854ff6c57d03ee41471684cb5e81ad6fadf279fb"
     },
     {
       "path": "dist/video/player/index.html",
-      "bytes": 65369,
-      "sha256": "722bd820f9d9fb238579eb5fc0b963be475f63d3b5ad8ada6ee572ee676b1ee1"
+      "bytes": 65372,
+      "sha256": "75374902182b1b3c59ca96cc1d183693fe60d30802ce43d63ad6da7b4a736021"
     },
     {
       "path": "dist/video/player.html",
-      "bytes": 65369,
-      "sha256": "722bd820f9d9fb238579eb5fc0b963be475f63d3b5ad8ada6ee572ee676b1ee1"
+      "bytes": 65372,
+      "sha256": "75374902182b1b3c59ca96cc1d183693fe60d30802ce43d63ad6da7b4a736021"
     },
     {
       "path": "dist/video.html",
-      "bytes": 62949,
-      "sha256": "2c319b5e1ac079151f2df00b19cf5d8a795bc57606c737da1aaf2b15e27b212f"
+      "bytes": 62952,
+      "sha256": "6ab63e144fdc4b7d273d11e1854ff6c57d03ee41471684cb5e81ad6fadf279fb"
     },
     {
       "path": "scripts/reading-page.html",
-      "bytes": 4958,
-      "sha256": "d98b5a4fd331450fd32a8a9d38a433d0246c63a54c9ff1568220311b55bbf52b"
+      "bytes": 4961,
+      "sha256": "61821cc7857aaaf4da1167b5b4e0470ce35ec054679b3e4dae9b7150d4783e44"
     },
     {
       "path": "scripts/refine-premium-card.py",
@@ -908,12 +919,12 @@
     {
       "path": "verification/video-route-baseline.json",
       "bytes": 693,
-      "sha256": "b51a6d8fe6df9f4b749b5af708e88cd216408561a5b80dedebd1abf5391dc38a"
+      "sha256": "af05b48ccbea4aff1835ab191272386afe2ed1e58b1f32d3133004d222289e6a"
     },
     {
       "path": "verification/x-player-protected-files.json",
       "bytes": 1418,
-      "sha256": "25d474f479d62c0e2337444ed98c3655ed4fb98740e4df77fccd96427533b7ff"
+      "sha256": "130df0c10d50b02cab41aa160f142ef6906369a7b82b2b8bc489f6108ce58182"
     },
     {
       "path": "verification/x-player-shell.test.mjs",

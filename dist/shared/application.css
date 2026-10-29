@@ -10,3 +10,5 @@
 @media(max-width:350px) and (max-height:500px){.application-shell{padding-inline:13px}.application-identity{gap:13px}.application-project{gap:13px;grid-template-columns:minmax(105px,.85fr) minmax(0,1.4fr)}.application-send{gap:9px}.application-submit{min-width:152px;padding-inline:12px}.application-eyebrow span{display:none}}
 
 .application-community>p{font:16px/1.5 Georgia,serif}.application-community-links{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.application-community-links a{flex:1;min-width:120px;text-align:center;padding:15px 20px;background:#17394c;color:#fff;text-decoration:none;border-radius:999px;font:15px/1.4 Arial,sans-serif}.application-community-links a:hover{background:#285d80}.application-retry{padding:10px 16px;border:1px solid #17394c;background:transparent;color:#17394c;border-radius:999px;cursor:pointer;font:14px Arial,sans-serif}
+
+.application-community-links a{display:inline-flex;align-items:center;justify-content:center;gap:10px}.application-community-icon{display:block;flex:none;width:20px;height:20px;object-fit:contain;filter:brightness(0) invert(1)}

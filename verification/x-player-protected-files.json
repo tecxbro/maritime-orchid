@@ -8,8 +8,8 @@
   "dist/shared/chapter-swipe.css": "376ae26b20dbb889534e08c567566e4e585eb72a626d928090960e44508e08c5",
   "dist/shared/chunk-buffer.mjs": "071b6d49534d43d16521ae6d334f0bf1b422f917c629d89806ee68977bb94bd1",
   "dist/shared/media-lifecycle.mjs": "d6d833d7f0226000777ee3ecf11d4403da1bc1b3e85253ba0f95794a135bd931",
-  "dist/shared/application.js": "0e38fea9bab3201fa76323feaf412417b87f58ebe7dd3a146678422a696d6e86",
-  "dist/shared/application.css": "a1e95f59d39137df5ab3f2a93b752e4e6c3f7d8655a8cfb37a2b9e8d2e21e39a",
+  "dist/shared/application.js": "5eed278349e4a758932dced58e37fb5d3c521e6fa973486b56f7aba525694670",
+  "dist/shared/application.css": "eb6f0f508c12965770ce2340d7114fda2baa27f4baa1b03f9f198f8ce76a0402",
   "dist/shared/application-config.js": "0d344395ff80f4fd2520f191f9019f25187f945cea2c37f912e52484b50a8497",
   "dist/terms.html": "0ff5396717df241dde9e7805573ec7586560f1f44517988119362b7626756545",
   "dist/terms/index.html": "0ff5396717df241dde9e7805573ec7586560f1f44517988119362b7626756545"
